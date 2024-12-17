@@ -1,0 +1,113 @@
+ /* Custom Bootstrap Overrides */
+ :root {
+    --bs-primary: #002A4E; /* Navy Blue */
+    --bs-secondary: #FFFFFF; /* White */
+    --bs-info: #ADE8F4; /* Aqua/Teal */
+  }
+
+  .bg-custom-blue {
+background-color: #003C6C;
+color: white; /* Optional for text visibility */
+}
+
+.text-custom-blue {
+color: #003C6C;
+}
+
+.bg-dark-navy {
+background-color: #00162B;
+color: white; /* Optional, for better text contrast */
+}
+  
+  body {
+   
+    color: var(--bs-secondary);
+  }
+
+  .navbar-brand img {
+    height: 50px;
+  }
+
+  .nav-link {
+    color: var(--bs-secondary) !important;
+  }
+
+  .nav-link:hover {
+    color: var(--bs-info) !important;
+  }
+
+  .hero-section {
+    background-color: var(--bs-primary);
+    color: var(--bs-secondary);
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+  }
+
+  .btn-primary {
+    background-color: #71C9E8; /* Slightly darker Aqua */
+    border: none;
+  }
+
+  .btn-primary:hover {
+    
+    background-color: var(--bs-info);
+  }
+
+  .service-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Full height within column */
+}
+
+.service-card .p-4 {
+  flex: 1; /* Ensures the card content stretches to fill available space */
+}
+
+.service-card img {
+  height: 150px; /* Specify height for images */
+  object-fit: cover; /* Ensures the images fill the space nicely */
+}
+
+.service-card:hover .rounded {
+  box-shadow: 0 8px 16px rgba(0, 60, 108, 0.5); /* Adds a blue shadow on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.service-card .rounded {
+  min-height: 300px; /* Specifies minimum height for uniformity */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+
+  footer {
+    color: var(--bs-secondary);
+  }
+
+  footer a {
+    color: #71C9E8;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    
+    color: var(--bs-info);
+  }
+
+
+
+/* Prices*/
+tbody .service-column {
+  background-color: #046bc0;
+  color:white;
+}
+
+tbody .price-column {
+  background-color: #046bc0;
+  color: white;
+}
+
+table th{
+  background-color: #003C6C;
+}
