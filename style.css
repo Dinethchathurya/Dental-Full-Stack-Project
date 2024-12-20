@@ -111,3 +111,26 @@ tbody .price-column {
 table th{
   background-color: #003C6C;
 }
+
+
+/*Book*/
+.text-green {
+  color: lightgreen;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.col-lg-5 {
+  flex: 1;
+  margin-right: 20px;
+}
+.col-lg-5:last-child {
+  margin-right: 0;
+}
+
+.custom-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Custom shadow */
+  height: 800px; /* Set desired height */
+}
