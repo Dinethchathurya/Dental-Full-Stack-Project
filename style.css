@@ -1,17 +1,16 @@
- /* Custom Bootstrap Overrides */
  :root {
    --bs-primary: #002A4E;
-   /* Navy Blue */
+
    --bs-secondary: #FFFFFF;
-   /* White */
+
    --bs-info: #ADE8F4;
-   /* Aqua/Teal */
+
  }
 
  .bg-custom-blue {
    background-color: #003C6C;
    color: white;
-   /* Optional for text visibility */
+
  }
 
  .text-custom-blue {
@@ -21,7 +20,7 @@
  .bg-dark-navy {
    background-color: #00162B;
    color: white;
-   /* Optional, for better text contrast */
+
  }
 
  body {
@@ -51,7 +50,7 @@
 
  .btn-primary {
    background-color: #71C9E8;
-   /* Slightly darker Aqua */
+
    border: none;
  }
 
@@ -64,35 +63,34 @@
    display: flex;
    flex-direction: column;
    height: 100%;
-   /* Full height within column */
+
  }
 
  .service-card .p-4 {
    flex: 1;
-   /* Ensures the card content stretches to fill available space */
+
  }
 
  .service-card img {
    height: 150px;
-   /* Specify height for images */
+
    object-fit: cover;
-   /* Ensures the images fill the space nicely */
+
  }
 
  .service-card:hover .rounded {
    box-shadow: 0 8px 16px rgba(0, 60, 108, 0.5);
-   /* Adds a blue shadow on hover */
+
    transform: scale(1.05);
-   /* Slight zoom effect */
+
    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   /* Smooth transition */
  }
 
  .service-card .rounded {
    min-height: 300px;
-   /* Specifies minimum height for uniformity */
+
    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   /* Smooth transition */
+
  }
 
 
@@ -149,23 +147,22 @@
 
  .custom-card {
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   /* Custom shadow */
+
    height: 800px;
-   /* Set desired height */
+
  }
 
 
  /* OurTeam */
  .shaded-section {
-   /*background: #f8f9fa;*/
-   /* Light gray background for section shading */
+
    padding: 50px 15px;
    border-radius: 10px;
-   /* Adds rounded corners to the section */
+
    margin-bottom: 30px;
-   /* Spacing between sections */
+
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   /* Subtle shadow effect */
+
  }
 
  .profile-card {
@@ -176,7 +173,6 @@
    border-radius: 10px;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    height: 450px;
-   /* Set a fixed height for uniformity */
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -211,55 +207,58 @@
 
 
  /*dashboard*/
- .btn-custom-blue
- {
-     background-color: #003C6C;
+ .btn-custom-blue {
+   background-color: #003C6C;
  }
- .sidebar {
-     height: auto;
 
-     color: white;
+ .sidebar {
+   height: auto;
+
+   color: white;
  }
 
  .sidebar a {
-     color: white;
-     text-decoration: none;
-     margin: 10px 0;
-     display: block;
-     padding: 10px;
+   color: white;
+   text-decoration: none;
+   margin: 10px 0;
+   display: block;
+   padding: 10px;
  }
 
  .sidebar a:hover {
-     background-color: #003C6C;
-     border-radius: 5px;
+   background-color: #003C6C;
+   border-radius: 5px;
  }
 
  .navbar-brand {
-     color: white;
+   color: white;
  }
 
  .card {
-     border: none;
-     border-radius: 8px;
-     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   border: none;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
 
  .main-content {
-     background-color: #003C6C;
-     border-radius: 8px;
-     padding: 20px;
-     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   background-color: #003C6C;
+   border-radius: 8px;
+   padding: 20px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
 
-/* Custom shadow box styles */
-.shadow-box {
- padding: 20px;
- border-radius: 10px;
- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
- background-color: #003C6C;
- width: 90%; /* Adjust width as needed */
- max-width: 1500px; /* Set max width for responsiveness */
- height: auto; /* Adjust height as needed */
- margin: 20px auto; /* Center the box */
- overflow-y: auto; /* Add scrolling if the content exceeds height */
-}
+ .shadow-box {
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   background-color: #003C6C;
+   width: 90%;
+   max-width: 1500px;
+   height: auto;
+   margin: 20px auto;
+   overflow-y: auto;
+ }
+
+ .btn.btn-primary.mb-3 {
+   width: 200px;
+ }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="container d-flex justify-content-center align-items-center vh-100">
-    <form class="shadow p-5 rounded bg-custom-blue" style="max-width: 400px; width: 100%;" onsubmit="return validateLogin()">
+    <form class="shadow p-5 rounded bg-custom-blue" style="max-width: 400px; width: 100%;"
+      onsubmit="return validateLogin()">
       <h3 class="text-center mb-4">Admin Login</h3>
       <div class="mb-3">
         <label for="username" class="form-label">User Name</label>
@@ -31,11 +34,11 @@
       const email = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      // Example validation logic (replace with actual backend validation)
       if (email === "admin" && password === "admin123") {
-        window.location.href = "admin.html"; // Redirect to the admin dashboard
+        window.location.href = "admin.html";
         return false;
-      } else {
+      }
+      else {
         alert("Invalid email or password. Please try again.");
         return false;
       }
@@ -44,4 +47,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
