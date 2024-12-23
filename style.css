@@ -207,3 +207,59 @@
    font-size: 0.9rem;
    font-style: italic;
  }
+
+
+
+ /*dashboard*/
+ .btn-custom-blue
+ {
+     background-color: #003C6C;
+ }
+ .sidebar {
+     height: auto;
+
+     color: white;
+ }
+
+ .sidebar a {
+     color: white;
+     text-decoration: none;
+     margin: 10px 0;
+     display: block;
+     padding: 10px;
+ }
+
+ .sidebar a:hover {
+     background-color: #003C6C;
+     border-radius: 5px;
+ }
+
+ .navbar-brand {
+     color: white;
+ }
+
+ .card {
+     border: none;
+     border-radius: 8px;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .main-content {
+     background-color: #003C6C;
+     border-radius: 8px;
+     padding: 20px;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+/* Custom shadow box styles */
+.shadow-box {
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ background-color: #003C6C;
+ width: 90%; /* Adjust width as needed */
+ max-width: 1500px; /* Set max width for responsiveness */
+ height: auto; /* Adjust height as needed */
+ margin: 20px auto; /* Center the box */
+ overflow-y: auto; /* Add scrolling if the content exceeds height */
+}
