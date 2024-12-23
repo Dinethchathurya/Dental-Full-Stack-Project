@@ -1,136 +1,209 @@
  /* Custom Bootstrap Overrides */
  :root {
-    --bs-primary: #002A4E; /* Navy Blue */
-    --bs-secondary: #FFFFFF; /* White */
-    --bs-info: #ADE8F4; /* Aqua/Teal */
-  }
+   --bs-primary: #002A4E;
+   /* Navy Blue */
+   --bs-secondary: #FFFFFF;
+   /* White */
+   --bs-info: #ADE8F4;
+   /* Aqua/Teal */
+ }
 
-  .bg-custom-blue {
-background-color: #003C6C;
-color: white; /* Optional for text visibility */
-}
+ .bg-custom-blue {
+   background-color: #003C6C;
+   color: white;
+   /* Optional for text visibility */
+ }
 
-.text-custom-blue {
-color: #003C6C;
-}
+ .text-custom-blue {
+   color: #003C6C;
+ }
 
-.bg-dark-navy {
-background-color: #00162B;
-color: white; /* Optional, for better text contrast */
-}
-  
-  body {
-   
-    color: var(--bs-secondary);
-  }
+ .bg-dark-navy {
+   background-color: #00162B;
+   color: white;
+   /* Optional, for better text contrast */
+ }
 
-  .navbar-brand img {
-    height: 50px;
-  }
+ body {
 
-  .nav-link {
-    color: var(--bs-secondary) !important;
-  }
+   color: var(--bs-secondary);
+ }
 
-  .nav-link:hover {
-    color: var(--bs-info) !important;
-  }
+ .navbar-brand img {
+   height: 50px;
+ }
 
-  .hero-section {
-    background-color: var(--bs-primary);
-    color: var(--bs-secondary);
-    background-size: cover;
-    background-position: center;
-    padding: 5rem 0;
-  }
+ .nav-link {
+   color: var(--bs-secondary) !important;
+ }
 
-  .btn-primary {
-    background-color: #71C9E8; /* Slightly darker Aqua */
-    border: none;
-  }
+ .nav-link:hover {
+   color: var(--bs-info) !important;
+ }
 
-  .btn-primary:hover {
-    
-    background-color: var(--bs-info);
-  }
+ .hero-section {
+   background-color: var(--bs-primary);
+   color: var(--bs-secondary);
+   background-size: cover;
+   background-position: center;
+   padding: 5rem 0;
+ }
 
-  .service-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Full height within column */
-}
+ .btn-primary {
+   background-color: #71C9E8;
+   /* Slightly darker Aqua */
+   border: none;
+ }
 
-.service-card .p-4 {
-  flex: 1; /* Ensures the card content stretches to fill available space */
-}
+ .btn-primary:hover {
 
-.service-card img {
-  height: 150px; /* Specify height for images */
-  object-fit: cover; /* Ensures the images fill the space nicely */
-}
+   background-color: var(--bs-info);
+ }
 
-.service-card:hover .rounded {
-  box-shadow: 0 8px 16px rgba(0, 60, 108, 0.5); /* Adds a blue shadow on hover */
-  transform: scale(1.05); /* Slight zoom effect */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-}
+ .service-card {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   /* Full height within column */
+ }
 
-.service-card .rounded {
-  min-height: 300px; /* Specifies minimum height for uniformity */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-}
+ .service-card .p-4 {
+   flex: 1;
+   /* Ensures the card content stretches to fill available space */
+ }
 
+ .service-card img {
+   height: 150px;
+   /* Specify height for images */
+   object-fit: cover;
+   /* Ensures the images fill the space nicely */
+ }
 
-  footer {
-    color: var(--bs-secondary);
-  }
+ .service-card:hover .rounded {
+   box-shadow: 0 8px 16px rgba(0, 60, 108, 0.5);
+   /* Adds a blue shadow on hover */
+   transform: scale(1.05);
+   /* Slight zoom effect */
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   /* Smooth transition */
+ }
 
-  footer a {
-    color: #71C9E8;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    
-    color: var(--bs-info);
-  }
-
-
-
-/* Prices*/
-tbody .service-column {
-  background-color: #046bc0;
-  color:white;
-}
-
-tbody .price-column {
-  background-color: #046bc0;
-  color: white;
-}
-
-table th{
-  background-color: #003C6C;
-}
+ .service-card .rounded {
+   min-height: 300px;
+   /* Specifies minimum height for uniformity */
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   /* Smooth transition */
+ }
 
 
-/*Book*/
-.text-green {
-  color: lightgreen;
-}
+ footer {
+   color: var(--bs-secondary);
+ }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-.col-lg-5 {
-  flex: 1;
-  margin-right: 20px;
-}
-.col-lg-5:last-child {
-  margin-right: 0;
-}
+ footer a {
+   color: #71C9E8;
+   text-decoration: none;
+ }
 
-.custom-card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Custom shadow */
-  height: 800px; /* Set desired height */
-}
+ footer a:hover {
+
+   color: var(--bs-info);
+ }
+
+
+
+ /* Prices*/
+ tbody .service-column {
+   background-color: #046bc0;
+   color: white;
+ }
+
+ tbody .price-column {
+   background-color: #046bc0;
+   color: white;
+ }
+
+ table th {
+   background-color: #003C6C;
+ }
+
+
+ /*Book*/
+ .text-green {
+   color: lightgreen;
+ }
+
+ .container {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .col-lg-5 {
+   flex: 1;
+   margin-right: 20px;
+ }
+
+ .col-lg-5:last-child {
+   margin-right: 0;
+ }
+
+ .custom-card {
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   /* Custom shadow */
+   height: 800px;
+   /* Set desired height */
+ }
+
+
+ /* OurTeam */
+ .shaded-section {
+   /*background: #f8f9fa;*/
+   /* Light gray background for section shading */
+   padding: 50px 15px;
+   border-radius: 10px;
+   /* Adds rounded corners to the section */
+   margin-bottom: 30px;
+   /* Spacing between sections */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   /* Subtle shadow effect */
+ }
+
+ .profile-card {
+   text-align: center;
+   padding: 20px;
+   background: #ffffff;
+   border: 1px solid #e0e0e0;
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   height: 450px;
+   /* Set a fixed height for uniformity */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .profile-card img {
+   width: 150px;
+   height: 150px;
+   object-fit: cover;
+   border-radius: 50%;
+   margin-bottom: 15px;
+ }
+
+ .profile-card h5 {
+   font-size: 1.25rem;
+   margin-bottom: 10px;
+ }
+
+ .profile-card p {
+   margin-bottom: 5px;
+   font-size: 0.95rem;
+ }
+
+ .profile-card em {
+   display: block;
+   margin-bottom: 10px;
+   font-size: 0.9rem;
+   font-style: italic;
+ }
