@@ -7,38 +7,44 @@
   <title>Dental</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
-
-  <!-- Navbar -->
+  <!--nav bar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-dark-navy shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <p class="text-white">Smile dental</p>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="Images/Icon.png" alt="Logo" class="navbar-brand img me-2 align-items-left">
       </a>
       <button class="navbar-toggler bg-custom-blue" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon bg-custom-blue"></span>
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Navbar Links -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto me-0">
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#about">About Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#prices">Prices</a></li>
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#ourteam">Our Team</a></li>
-          <li class="nav-item"><a class="nav-link text-white fs-4" href="#contact">Contact</a></li>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" style="font-size: 1.2rem;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#about" style="font-size: 1.2rem;">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#services" style="font-size: 1.2rem;">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#prices" style="font-size: 1.2rem;">Prices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#ourteam" style="font-size: 1.2rem;">Our Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#contact" style="font-size: 1.2rem;">Contact</a>
+          </li>
         </ul>
+        <!-- Book Now Button -->
+        <a href="#" class="btn btn-primary btn-lg ms-3">Book Now</a>
       </div>
-
-      <!-- Book Now Button -->
-      <a href="" class="btn btn-primary btn-lg d-none d-lg-block ms-3 me-0">Book Now</a>
     </div>
   </nav>
-
 
   <!-- Hero Section -->
   <header class="hero-section text-center text-white" style="background-image: url('Images/Smile.png');">
@@ -50,7 +56,6 @@
         <p>or call <span class="fs-4">0777 38 65 90</span> for appointments</p>
       </div>
     </div>
-
   </header>
 
   <!-- About Section -->
@@ -87,15 +92,13 @@
     </div>
   </section>
 
-
-
-
-
-
-  <!-- Services Section -->
   <section id="services" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4 text-custom-blue">Our Services</h2>
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+      <h2 class="text-custom-blue">Our Services</h2>
+    </div>
+    <div class="container text-center">
+      <!-- Services Section -->
       <div class="row">
         <!-- Service 1 -->
         <div class="col-md-4 text-center service-card">
@@ -131,14 +134,13 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-5">
-    <div class="container">
-      <div class="shadow p-5 bg-custom-blue rounded mx-auto" style="max-width: 1000px;">
-
-        <form class="mx-auto" style="max-width: 800px;"> <!-- Limit form width -->
+    <div class="container " style="width: 1000px;">
+      <div class="shadow p-5 bg-custom-blue rounded mx-auto" style="max-width: 1200px;">
+        <form class="mx-auto" style="max-width: 1000px;"> <!-- Limit form width -->
           <h2 class="text-center mb-4">Contact Us</h2>
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Your Name">
+            <input type="text" class="form-control" id="name" placeholder="Your Name" style="width: 500px;;">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -157,54 +159,32 @@
   </section>
 
   <!--location-->
-  <section id="location" class="d-flex align-items-center">
-    <div class="container">
-      <h2 class="text-center mb-4 text-custom-blue">Our Location</h2>
-      <p class="text-center mb-4 text-custom-blue">324-10 Havelock Rd, Colombo 00500</p>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="ratio ratio-16x9">
-            <iframe class="embed-responsive-item"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0656265239536!2d79.86579387581777!3d6.882742118882746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25b21c4ad9c7f%3A0x2db603e21bdfd4f9!2sHavelock%20City%20Mall!5e0!3m2!1sen!2slk!4v1733757440611!5m2!1sen!2slk"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
+  <section id="location" class="py-5">
+    <!-- Header above the container -->
+    <h2 class="text-center mb-4 text-custom-blue">Our Location</h2>
+    <p class="text-center mb-4 text-custom-blue">324-10 Havelock Rd, Colombo 00500</p>
+    <div class="container d-flex justify-content-center">
+      <!-- Google Map Embed -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0656709672444!2d79.86579387584283!3d6.882736793116215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25b21c4ad9c7f%3A0x2db603e21bdfd4f9!2sHavelock%20City%20Mall!5e0!3m2!1sen!2slk!4v1735566678935!5m2!1sen!2slk"
+        width="600" height="450" style="border:0; align-items: center;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
-
-
-
-
 
   <!-- Footer -->
   <footer class="bg-dark-navy text-white py-4 shadow-sm">
     <div class="container">
-      <!-- Footer Navigation -->
       <div class="d-flex justify-content-center mb-3">
         <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item me-4">
-            <a class="nav-link text-white fs-5" href="#">Home</a>
-          </li>
-          <li class="nav-item me-4">
-            <a class="nav-link text-white fs-5" href="#about">About Us</a>
-          </li>
-          <li class="nav-item me-4">
-            <a class="nav-link text-white fs-5" href="#services">Services</a>
-          </li>
-          <li class="nav-item me-4">
-            <a class="nav-link text-white fs-5" href="#prices">Prices</a>
-          </li>
-          <li class="nav-item me-4">
-            <a class="nav-link text-white fs-5" href="#ourteam">Our Team</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white fs-5" href="#contact">Contact</a>
-          </li>
+          <li class="nav-item me-4"><a class="nav-link text-white fs-5" href="#">Home</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-white fs-5" href="#about">About Us</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-white fs-5" href="#services">Services</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-white fs-5" href="#prices">Prices</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-white fs-5" href="#ourteam">Our Team</a></li>
+          <li class="nav-item"><a class="nav-link text-white fs-5" href="#contact">Contact</a></li>
         </ul>
       </div>
-
-      <!-- Social Media Icons -->
       <div class="d-flex justify-content-center mb-3">
         <a href="https://www.facebook.com" class="me-3">
           <img src="Images/fb.png" alt="Facebook" style="width: 30px; height: 30px;">
@@ -216,17 +196,12 @@
           <img src="Images/instra.png" alt="Instagram" style="width: 30px; height: 30px;">
         </a>
       </div>
-
-      <!-- Footer Paragraphs -->
       <div class="text-center">
         <p class="mb-1">© 2024 Smile Dental | All Rights Reserved</p>
         <p class="mb-0">Call <span class="fs-4">0777 38 65 90</span> for appointments</p>
       </div>
     </div>
   </footer>
-
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
