@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile   
+    ports:
+      - "5173:5173" 
+    depends_on:
+      - backend  
+    environment:
+      - REACT_APP_API_URL=http://localhost:5173
+    command: npm run dev -- --host  
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile   
+    ports:
+      - "9000:9000" 
+    command: npm start
+
