@@ -1,0 +1,282 @@
+ :root {
+   --bs-primary: #002A4E;
+
+   --bs-secondary: #FFFFFF;
+
+   --bs-info: #ADE8F4;
+
+ }
+
+ .bg-custom-blue {
+   background-color: #003C6C;
+   color: white;
+
+ }
+
+ .text-custom-blue {
+   color: #003C6C;
+ }
+
+ .bg-dark-navy {
+   background-color: #00162B;
+   color: white;
+
+ }
+
+ body {
+
+   color: var(--bs-secondary);
+ }
+
+ .navbar {
+   height: 60px;
+   width: 100%;
+ }
+
+
+ .navbar-nav .nav-link {
+   font-size: 1.2rem;
+   padding: 10px 15px;
+   color: var(--bs-secondary) !important;
+ }
+
+ .navbar-brand img {
+   height: 50px;
+   margin: 0;
+ }
+
+ .navbar-toggler {
+   padding: 10px;
+ }
+
+ .navbar-toggler-icon {
+   width: 1.5em;
+   height: 1.5em;
+ }
+
+ .nav-link:hover {
+   color: var(--bs-info) !important;
+ }
+
+ .hero-section {
+   background-color: var(--bs-primary);
+   color: var(--bs-secondary);
+   background-size: cover;
+   background-position: center;
+   padding: 5rem 0;
+ }
+
+ .btn-primary {
+   background-color: #71C9E8;
+
+   border: none;
+ }
+
+ .btn-primary:hover {
+
+   background-color: var(--bs-info);
+ }
+
+ .service-card {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+
+ }
+
+ .service-card .p-4 {
+   flex: 1;
+
+ }
+
+ .service-card img {
+   height: 150px;
+
+   object-fit: cover;
+
+ }
+
+ .service-card:hover .rounded {
+   box-shadow: 0 8px 16px rgba(0, 60, 108, 0.5);
+
+   transform: scale(1.05);
+
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .service-card .rounded {
+   min-height: 300px;
+
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+ }
+
+
+ footer {
+   color: var(--bs-secondary);
+ }
+
+ footer a {
+   color: #71C9E8;
+   text-decoration: none;
+ }
+
+ footer a:hover {
+
+   color: var(--bs-info);
+ }
+
+
+
+ /* Prices*/
+ tbody .service-column {
+   background-color: #046bc0;
+   color: white;
+ }
+
+ tbody .price-column {
+   background-color: #046bc0;
+   color: white;
+ }
+
+ table th {
+   background-color: #003C6C;
+ }
+
+
+ /*Book*/
+ .text-green {
+   color: lightgreen;
+ }
+
+ .container {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .col-lg-5 {
+   flex: 1;
+   margin-right: 20px;
+ }
+
+ .col-lg-5:last-child {
+   margin-right: 0;
+ }
+
+ .custom-card {
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+   height: 800px;
+
+ }
+
+
+ /* OurTeam */
+ .shaded-section {
+
+   padding: 50px 15px;
+   border-radius: 10px;
+
+   margin-bottom: 30px;
+
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+ }
+
+ .profile-card {
+   text-align: center;
+   padding: 20px;
+   background: #ffffff;
+   border: 1px solid #e0e0e0;
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   height: 450px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .profile-card img {
+   width: 150px;
+   height: 150px;
+   object-fit: cover;
+   border-radius: 50%;
+   margin-bottom: 15px;
+ }
+
+ .profile-card h5 {
+   font-size: 1.25rem;
+   margin-bottom: 10px;
+ }
+
+ .profile-card p {
+   margin-bottom: 5px;
+   font-size: 0.95rem;
+ }
+
+ .profile-card em {
+   display: block;
+   margin-bottom: 10px;
+   font-size: 0.9rem;
+   font-style: italic;
+ }
+
+
+
+ /*dashboard*/
+ .btn-custom-blue {
+   background-color: #003C6C;
+ }
+
+ .sidebar {
+   height: auto;
+
+   color: white;
+ }
+
+ .sidebar a {
+   color: white;
+   text-decoration: none;
+   margin: 10px 0;
+   display: block;
+   padding: 10px;
+ }
+
+ .sidebar a:hover {
+   background-color: #003C6C;
+   border-radius: 5px;
+ }
+
+ .navbar-brand {
+   color: white;
+ }
+
+ .card {
+   border: none;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .main-content {
+   background-color: #003C6C;
+   border-radius: 8px;
+   padding: 20px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .shadow-box {
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   background-color: #003C6C;
+   width: 90%;
+   max-width: 1500px;
+   height: auto;
+   margin: 20px auto;
+   overflow-y: auto;
+ }
+
+ .btn.btn-primary.mb-3 {
+   width: 200px;
+ }

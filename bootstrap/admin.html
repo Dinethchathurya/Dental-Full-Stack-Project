@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar p-3 bg-dark-navy">
+            <h4 class="text-center">Admin Dashboard</h4>
+            <a href="#" class="d-block"><i class="bi bi-house"></i> Dashboard</a>
+            <a href="#Appointments" class="d-block"><i class="bi bi-calendar-check"></i>Appointment</a>
+            <a href="#Team" class="d-block"><i class="bi bi-people"></i> Team</a>
+            <a href="#price-list" class="d-block"><i class="bi bi-list-ul"></i> Price List</a>
+            <a href="#logout" class="d-block"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow-1">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark-navy">
+                <a class="navbar-brand" href="#">Dental Admin</a>
+            </nav>
+
+            <!-- View Appointments by Doctor -->
+            <section id="Appointments" class="shadow-box bg-custom-blue">
+                <div class="mt-4 ">
+                    <h3 class="text-center">Appointments by Doctor</h3>
+                    <select class="form-select mb-3" id="doctorFilter">
+                        <option selected>Select Doctor</option>
+                        <option value="1">Dr Lahiru Rajakaruna</option>
+                        <option value="2">Dr Deepali Nanayakkara</option>
+                        <option value="3">Dr Malinda Senadhirathna</option>
+                        <option value="4">Dr Dinali Gayasha</option>
+                    </select>
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentList">
+                            <!-- Appointments -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br> <br>
+
+            <!-- Add Doctor Section -->
+            <section id="Team" class="shadow-box bg-custom-blue">
+                <div class="mt-4">
+                    <h3 class="text-center">Doctors List</h3>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addDoctorModal">Add New
+                        Doctor</button>
+                    <table class="table table-striped " id="doctorTable">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Doctor Name</th>
+                                <th>Specialty</th>
+                                <th>Registration Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Doctors-->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- Add Doctor Modal -->
+                <div class="modal fade" id="addDoctorModal" tabindex="-1" aria-labelledby="addDoctorModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header text-custom-blue">
+                                <h5 class="modal-title text-center" id="addDoctorModalLabel">Add New Doctor</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addDoctorForm">
+
+                                    <div class="mb-3 text-custom-blue">
+                                        <label for="doctorName" class="form-label">Doctor Name</label>
+                                        <input type="text" class="form-control" id="doctorName"
+                                            placeholder="Enter Doctor Name" required>
+                                    </div>
+                                    <div class="mb-3 text-custom-blue">
+                                        <label for="doctorSpecialty" class="form-label">Specialty</label>
+                                        <input type="text" class="form-control" id="doctorSpecialty"
+                                            placeholder="Enter Specialty" required>
+                                    </div>
+                                    <div class="mb-3 text-custom-blue">
+                                        <label for="doctorRegistration" class="form-label">Registration Number</label>
+                                        <input type="text" class="form-control" id="doctorRegistration"
+                                            placeholder="Enter Registration Number" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="addDoctorBtn">Add Doctor</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br><br>
+
+            <!-- Price List Management -->
+            <section id="price-list" class="shadow-box bg-custom-blue">
+                <div class="mt-4">
+                    <h3 class="text-center">Price List</h3>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addServiceModal">Add
+                        New Service</button>
+                    <div class="dropdown mb-3">
+                        <select class="form-select mb-3" id="services">
+                            <option value="">Select Service</option>
+                            <!-- Services -->
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#editServiceModal ">Show
+                        Services</button>
+
+                    <!-- Add Service Modal -->
+                    <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-custom-blue" id="addServiceModalLabel">Add New Service
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addServiceForm">
+                                        <div class="mb-3">
+                                            <label for="serviceName" class="form-label text-custom-blue">Service
+                                                Name</label>
+                                            <input type="text" class="form-control" id="serviceName"
+                                                placeholder="Enter Service Name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="servicePrice" class="form-label text-custom-blue">Service
+                                                Price</label>
+                                            <input type="text" class="form-control" id="servicePrice"
+                                                placeholder="Enter Service Price" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Service</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Service Modal -->
+                    <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-custom-blue" id="editServiceModalLabel">Edit Service
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editServiceForm">
+                                        <div class="mb-3">
+                                            <label for="editServiceName" class="form-label text-custom-blue">Service
+                                                Name</label>
+                                            <input type="text" class="form-control" id="editServiceName"
+                                                placeholder="Enter Service Name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editServicePrice" class="form-label text-custom-blue">Service
+                                                Price</label>
+                                            <input type="text" class="form-control" id="editServicePrice"
+                                                placeholder="Enter Service Price" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update Service</button>
+                                        <button type="button" class="btn btn-danger" id="deleteServiceBtn">Delete
+                                            Service</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // doctor data
+        const doctors = [];
+
+        // display doctors
+        function displayDoctors() {
+            const doctorTableBody = document.querySelector('#doctorTable tbody');
+            doctorTableBody.innerHTML = '';
+
+            doctors.forEach((doctor, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${doctor.name}</td>
+            <td>${doctor.specialty}</td>
+            <td>${doctor.registration}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="editDoctor(${index})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteDoctor(${index})">Delete</button>
+            </td>
+        `;
+                doctorTableBody.appendChild(row);
+            });
+        }
+
+        // Add doctor
+        document.getElementById("addDoctorBtn").addEventListener
+            ("click", function () {
+                const name = document.getElementById("doctorName").value;
+                const specialty = document.getElementById("doctorSpecialty").value;
+                const registration = document.getElementById("doctorRegistration").value;
+
+                if (name && specialty && registration) {
+                    // Add new doctor to the array
+                    doctors.push
+                        (
+                            {
+                                name: name,
+                                specialty: specialty,
+                                registration: registration
+                            }
+                        );
+
+                    // Clear the form
+                    document.getElementById("addDoctorForm").reset();
+
+                    // Close modal & refresh the doctor list
+                    $('#addDoctorModal').modal('hide');
+                    displayDoctors();
+                }
+                else {
+                    alert("Please fill all fields.");
+                }
+            }
+            );
+
+        // Edit doctor
+        function editDoctor(index) {
+            const doctor = doctors[index];
+            const newName = prompt("Enter new name", doctor.name);
+            const newSpecialty = prompt("Enter new specialty", doctor.specialty);
+            const newRegistration = prompt("Enter new registration number", doctor.registration);
+
+            if (newName && newSpecialty && newRegistration) {
+                // Update doctor details
+                doctors[index] =
+                {
+                    name: newName,
+                    specialty: newSpecialty,
+                    registration: newRegistration
+                };
+
+                // Refresh doctor list
+                displayDoctors();
+            }
+            else {
+                alert("All fields are required.");
+            }
+        }
+
+        // Delete doctor
+        function deleteDoctor(index) {
+            if (confirm("Are you sure you want to delete this doctor?")) {
+                // Remove the doctor
+                doctors.splice(index, 1);
+
+                // Refresh doctor list
+                displayDoctors();
+            }
+        }
+
+        // Initial load
+        displayDoctors();
+
+        // services and prices
+        const services =
+            [
+                { name: "Appointment Charges/ Channeling Fee", price: "Free" },
+                { name: "Service Charges, Taxes & VAT", price: "Free" },
+                { name: "Examination and Consultation", price: "Free" },
+                { name: "Teeth Whitening – Examination Visit", price: "Free" },
+                { name: "Teeth Whitening – Starter Package", price: "Rs 35,000/-" },
+                { name: "Teeth Whitening – Regular Package", price: "Rs 60,000/-" },
+                { name: "Teeth Whitening – Hollywood Package", price: "Rs 85,000/-" },
+                { name: "Dental Implant Consultation", price: "Free" },
+                { name: "Dental Implant (Mini/Hybrid) – with Porcelain Crown", price: "Rs 100,000/-" },
+                { name: "Dental Implant – with Porcelain Crown", price: "Rs 150,000/-" },
+                { name: "Braces – One Arch", price: "Rs 130,000/-" },
+                { name: "Braces – Both Arches", price: "Rs 250,000/-" },
+                { name: "Payment Plan – 1st Visit for Braces", price: "Rs 10,000/-" },
+                { name: "Payment Plan – 2nd Visit for Braces – Bond Up", price: "50% of the total" },
+                { name: "Payment Plan – 3rd & Any Other Visit – Adjustment", price: "Rs 5,000/-" }
+            ];
+
+        // Update the service dropdown list
+        function updateServiceDropdown() {
+            const selectElement = document.getElementById("services");
+            selectElement.innerHTML = '<option value="">Select Service</option>';
+            services.forEach
+                ((service, index) => {
+                    const option = document.createElement("option");
+                    option.value = index;
+                    option.textContent = `${service.name} - ${service.price}`;
+                    selectElement.appendChild(option);
+                }
+                );
+        }
+
+        // Initial load of services
+        updateServiceDropdown();
+
+        //handle adding a new service
+        document.getElementById("addServiceForm").addEventListener
+            ("submit", function (e) {
+                e.preventDefault();
+
+                const serviceName = document.getElementById("serviceName").value;
+                const servicePrice = document.getElementById("servicePrice").value;
+
+                // Add the new service
+                services.push({ name: serviceName, price: servicePrice });
+
+                // Update the dropdown
+                updateServiceDropdown();
+
+                // Reset form and close modal
+                document.getElementById("addServiceForm").reset();
+                $('#addServiceModal').modal('hide');
+            }
+            );
+
+        // handle editing a service
+        document.getElementById("services").addEventListener("change", function () {
+            const selectedIndex = this.value;
+            if (selectedIndex !== "") {
+                const selectedService = services[selectedIndex];
+
+                // Fill the edit form with selected service data
+                document.getElementById("editServiceName").value = selectedService.name;
+                document.getElementById("editServicePrice").value = selectedService.price;
+
+                // Open the Edit Service modal
+                $('#editServiceModal').modal('show');
+
+                // Update service after form submission
+                document.getElementById("editServiceForm").addEventListener
+                    ("submit", function (e) {
+                        e.preventDefault();
+
+                        // Get updated values
+                        const updatedServiceName = document.getElementById("editServiceName").value;
+                        const updatedServicePrice = document.getElementById("editServicePrice").value;
+
+                        // Update the service
+                        services[selectedIndex] = { name: updatedServiceName, price: updatedServicePrice };
+
+                        // Update the dropdown
+                        updateServiceDropdown();
+
+                        // Close modal
+                        $('#editServiceModal').modal('hide');
+                    }
+                    );
+
+                // Delete the service
+                document.getElementById("deleteServiceBtn").addEventListener
+                    ("click", function () {
+                        if (confirm("Are you sure you want to delete this service?")) {
+                            services.splice(selectedIndex, 1);
+                            updateServiceDropdown();
+                            $('#editServiceModal').modal('hide');
+                        }
+                    }
+                    );
+            }
+        }
+        );
+
+    </script>
+</body>
+
+</html>
