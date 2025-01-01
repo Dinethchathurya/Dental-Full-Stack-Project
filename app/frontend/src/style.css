@@ -139,6 +139,16 @@
     color: white;
   }
  
+  thead .service-column {
+    background-color: #046bc0;
+    color: white;
+  }
+  
+  thead .price-column {
+    background-color: #046bc0;
+    color: white;
+  }
+
   table th {
     background-color: #003C6C;
   }
