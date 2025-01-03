@@ -4,6 +4,8 @@ import Navbar from "../components/navbar";
 import Appointments from "../components/admin/Appointments";
 import AddDoctorModal from "../components/admin/AddDoctorModal";
 import PriceList from "../components/admin/PriceList";
+import { Helmet } from 'react-helmet-async';
+
 
 
 const AdminDashboard = () => {

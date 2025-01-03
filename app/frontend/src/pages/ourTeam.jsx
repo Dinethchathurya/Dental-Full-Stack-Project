@@ -3,6 +3,8 @@ import NavbarComponent from "../components/navbar";
 import Footer from "../components/footer";
 import Team from "../components/Team";
 import AppoinmentPolicy from "../components/appoinmentPolicy";
+import { Helmet } from 'react-helmet-async';
+
 
 const OurTeam = () => {
     return (

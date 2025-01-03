@@ -2,6 +2,7 @@ import React from "react";
 import NavbarComponent from "../components/navbar";
 import Footer from "../components/footer";
 import Prices from "../components/prices";
+import { Helmet } from 'react-helmet-async';
 
 const Price = () =>{
     return (

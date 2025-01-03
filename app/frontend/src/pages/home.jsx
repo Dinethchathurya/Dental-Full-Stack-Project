@@ -6,7 +6,8 @@ import Services from "../components/services";
 import Contact from "../components/contact";
 import Location from "../components/location";
 import Footer from "../components/footer";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
+
 
 const HomePage = () => {
   return (

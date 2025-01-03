@@ -14,7 +14,7 @@ const AddDoctorModal = () => {
 
   return (
     <>
-      <section id="Team" class="shadow-box bg-custom-blue">
+      <section id="Team" className="shadow-box bg-custom-blue">
       <div className="mt-4">
         <h3 className="text-center">Doctors List</h3>
         <button
