@@ -7,6 +7,11 @@ import AppoinmentPolicy from "../components/appoinmentPolicy";
 const OurTeam = () => {
     return (
         <>
+        <Helmet>
+        <title>Our Team</title>
+        <meta name="description" content="This is the OurTeam page" />
+        </Helmet>
+
         <NavbarComponent />
         <Team />
         <AppoinmentPolicy />

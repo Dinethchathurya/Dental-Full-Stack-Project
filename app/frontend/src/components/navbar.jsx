@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const NavbarComponent = () => {
   return (
@@ -23,13 +24,7 @@ const NavbarComponent = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link text-white"
-                  href="#"
-                  style={{ fontSize: "1.2rem" }}
-                >
-                  Home
-                </a>
+                <Link to="/" className="nav-link text-white" style={{ fontSize: "1.2rem" }} >Home</Link>
               </li>
               <li className="nav-item">
                 <a
@@ -78,9 +73,7 @@ const NavbarComponent = () => {
               </li>
             </ul>
             {/* Book Now Button */}
-            <a href="#" className="btn btn-primary btn-lg ms-3">
-              Book Now
-            </a>
+            <Link to="/booking" className="btn btn-primary btn-lg ms-3" >Book Now</Link>
           </div>
         </div>
       </nav>

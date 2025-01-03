@@ -6,6 +6,11 @@ import Prices from "../components/prices";
 const Price = () =>{
     return (
         <>
+        <Helmet>
+        <title>Price</title>
+        <meta name="description" content="This is the Price page" />
+        </Helmet>
+
         <NavbarComponent />
 
         <Prices />

@@ -8,7 +8,13 @@ import PriceList from "../components/admin/PriceList";
 
 const AdminDashboard = () => {
   return (
-    <div className="d-flex">
+    <>
+      <Helmet>
+        <title>Admin Dashbord</title>
+        <meta name="description" content="This is the Admin Dashbord" />
+      </Helmet>
+
+      <div className="d-flex">
       <Sidebar />
       <div className="flex-grow-1">
         <Navbar />
@@ -17,6 +23,8 @@ const AdminDashboard = () => {
         <PriceList />
       </div>
     </div>
+    </>
+  
   );
 };
 
