@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Header = () => {
   return (
@@ -14,9 +15,9 @@ const Header = () => {
           >
             <h1>Welcome to Smile Dental</h1>
             <p>Providing exceptional dental care for all ages</p>
-            <a href="" className="btn btn-primary btn-lg mt-3">
-              Book Online
-            </a>
+            <Link to="/booking" className="btn btn-primary btn-lg mt-3">
+            Book Online
+            </Link>
             <p>
               or call <span className="fs-4">0777 38 65 90</span> for
               appointments

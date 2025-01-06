@@ -30,25 +30,25 @@ const PriceList = () => {
 
   return (
     <>
-      <section id="price-list" class="shadow-box bg-custom-blue">
-        <div class="mt-4">
-          <h3 class="text-center">Price List</h3>
+      <section id="price-list" className="shadow-box bg-custom-blue">
+        <div className="mt-4">
+          <h3 className="text-center">Price List</h3>
           <button
-            class="btn btn-primary mb-3"
+            className="btn btn-primary mb-3"
             data-bs-toggle="modal"
             data-bs-target="#addServiceModal"
           >
             Add New Service
           </button>
-          <div class="dropdown mb-3">
-            <select class="form-select mb-3" id="services">
+          <div className="dropdown mb-3">
+            <select className="form-select mb-3" id="services">
               <option value="">Select Service</option>
               {/* <!-- Services --> */}
             </select>
           </div>
 
           <button
-            class="btn btn-primary mb-3"
+            className="btn btn-primary mb-3"
             data-bs-toggle="modal"
             data-bs-target="#editServiceModal "
           >
@@ -57,66 +57,66 @@ const PriceList = () => {
 
           {/* <!-- Add Service Modal --> */}
           <div
-            class="modal fade"
+            className="modal fade"
             id="addServiceModal"
             tabindex="-1"
             aria-labelledby="addServiceModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <h5
-                    class="modal-title text-custom-blue"
+                    className="modal-title text-custom-blue"
                     id="addServiceModalLabel"
                   >
                     Add New Service
                   </h5>
                   <button
                     type="button"
-                    class="btn-close"
+                    className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                   <form id="addServiceForm">
-                    <div class="mb-3">
+                    <div className="mb-3">
                       <label
                         for="serviceName"
-                        class="form-label text-custom-blue"
+                        className="form-label text-custom-blue"
                       >
                         Service Name
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="serviceName"
                         placeholder="Enter Service Name"
                         required
                       />
                     </div>
-                    <div class="mb-3">
+                    <div className="mb-3">
                       <label
                         for="servicePrice"
-                        class="form-label text-custom-blue"
+                        className="form-label text-custom-blue"
                       >
                         Service Price
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="servicePrice"
                         placeholder="Enter Service Price"
                         required
                       />
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" className="btn btn-primary">
                       Add Service
                     </button>
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     >
@@ -130,73 +130,73 @@ const PriceList = () => {
 
           {/* <!-- Edit Service Modal --> */}
           <div
-            class="modal fade"
+            className="modal fade"
             id="editServiceModal"
             tabindex="-1"
             aria-labelledby="editServiceModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <h5
-                    class="modal-title text-custom-blue"
+                    className="modal-title text-custom-blue"
                     id="editServiceModalLabel"
                   >
                     Edit Service
                   </h5>
                   <button
                     type="button"
-                    class="btn-close"
+                    className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                   <form id="editServiceForm">
-                    <div class="mb-3">
+                    <div className="mb-3">
                       <label
                         for="editServiceName"
-                        class="form-label text-custom-blue"
+                        className="form-label text-custom-blue"
                       >
                         Service Name
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="editServiceName"
                         placeholder="Enter Service Name"
                         required
                       />
                     </div>
-                    <div class="mb-3">
+                    <div className="mb-3">
                       <label
                         for="editServicePrice"
-                        class="form-label text-custom-blue"
+                        className="form-label text-custom-blue"
                       >
                         Service Price
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="editServicePrice"
                         placeholder="Enter Service Price"
                         required
                       />
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" className="btn btn-primary">
                       Update Service
                     </button>
                     <button
                       type="button"
-                      class="btn btn-danger"
+                      className="btn btn-danger"
                       id="deleteServiceBtn"
                     >
                       Delete Service
                     </button>
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     >

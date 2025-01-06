@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Footer = () => {
     return (
@@ -7,12 +8,12 @@ const Footer = () => {
     <div className="container">
       <div className="d-flex justify-content-center mb-3">
         <ul className="navbar-nav d-flex flex-row">
-          <li className="nav-item me-4"><a className="nav-link text-white fs-5" href="#">Home</a></li>
-          <li className="nav-item me-4"><a className="nav-link text-white fs-5" href="#about">About Us</a></li>
-          <li className="nav-item me-4"><a className="nav-link text-white fs-5" href="#services">Services</a></li>
-          <li className="nav-item me-4"><a className="nav-link text-white fs-5" href="#prices">Prices</a></li>
-          <li className="nav-item me-4"><a className="nav-link text-white fs-5" href="#ourteam">Our Team</a></li>
-          <li className="nav-item"><a className="nav-link text-white fs-5" href="#contact">Contact</a></li>
+          <li className="nav-item me-4"><Link to="/" className="nav-link text-white fs-5" href="#about">About Us </Link></li>
+          <li className="nav-item me-4"><Link to="/" className="nav-link text-white fs-5" href="#">Home </Link></li>
+          <li className="nav-item me-4"><Link to="/" className="nav-link text-white fs-5" href="#services">Services </Link></li>
+          <li className="nav-item me-4"><Link to="/" className="nav-link text-white fs-5" href="#prices">Prices </Link></li>
+          <li className="nav-item me-4"><Link to="/" className="nav-link text-white fs-5" href="#ourteam">Our Team </Link></li>
+          <li className="nav-item"><Link to="/" className="nav-link text-white fs-5" href="#contact">Contact</Link></li>
         </ul>
       </div>
       <div className="d-flex justify-content-center mb-3">
