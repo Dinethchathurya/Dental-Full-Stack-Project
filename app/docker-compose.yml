@@ -22,4 +22,31 @@ services:
     command: npm start
     volumes:
       - ./backend:/app       
-      - /app/node_modules  
+      - /app/node_modules 
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mydatabase 
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+  
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mynetwork
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    networks:
+      - mynetwork
+
+volumes:
+  mongo_data:
+
+networks:
+  mynetwork:
