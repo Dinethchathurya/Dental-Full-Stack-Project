@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
 
 
-const AdminLogin = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
@@ -11,13 +11,13 @@ const AdminLogin = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // Handle login logic here
+    console.log(data); 
   };
 
   return (
     <>
       <Helmet>
-        <title>Log In</title>
+        <title>Registration</title>
         <meta name="description" content="This is the Log In " />
       </Helmet>
     
@@ -27,7 +27,7 @@ const AdminLogin = () => {
           style={{ maxWidth: "400px", width: "100%" }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h3 className="text-center mb-4">Admin Login</h3>
+          <h3 className="text-center mb-4">Registration</h3>
 
           {/* Username Field */}
           <div className="mb-3">
@@ -71,18 +71,11 @@ const AdminLogin = () => {
 
           {/* Login Button */}
           <button type="submit" className="btn btn-primary w-100">
-            Login
+            Register
           </button>
-
-          {/* Forgot Password Link */}
-          <div className="text-center mt-3">
-            <a href="#" className="text-decoration-none">
-              Forgot Password
-            </a>
-          </div>
         </form>
       </div>
     </>
   );
 };
-export default AdminLogin;
+export default Register;
