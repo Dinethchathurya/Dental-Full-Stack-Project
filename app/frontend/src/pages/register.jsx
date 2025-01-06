@@ -1,17 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
-
+import axios from 'axios';
 
 const Register = () => {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); 
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post('http://localhost:9000/api/register', data);
+      alert(response.data.message);
+    } catch (error) {
+        console.log(error);
+      alert('Error registering user something went wrong ');
+    }
   };
 
   return (
