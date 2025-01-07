@@ -2,9 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
@@ -13,11 +15,10 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:9000/api/register', data);
-      alert(response.data.message);
+      const response = await axios.post('http://localhost:9000/api/user/register', data).then(navigate('/'));
     } catch (error) {
-        console.log(error);
-      alert('Error registering user something went wrong ');
+      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
