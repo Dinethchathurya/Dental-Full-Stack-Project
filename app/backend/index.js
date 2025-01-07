@@ -2,10 +2,18 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import mongoose from 'mongoose' ;
 
 const port = 9000;
 const app = express();
 
+try {
+  mongoose.connect('mongodb://mongo:27017/dental');
+  console.log('connected to mongo');
+  
+} catch (error) {
+  console.log("monodb connection error" + error);
+}
 
 app.use(cors());
 
@@ -13,8 +21,9 @@ app.use(bodyParser.json());
 
 const users = [];
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Hello, World!');
+
 });
 
 app.post('/api/register', async (req, res) => {
