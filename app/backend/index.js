@@ -1,9 +1,25 @@
-import express from 'express';
+import express, { json } from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import connectDB from './config/db.js';
+import userRoutes from './routes/ userRoutes.js'
+import { configDotenv } from 'dotenv';
 
+configDotenv();
 const app = express();
-const port = 9000;
+const port = process.env.PORT;
 
-// Basic route
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Routes
+app.use('/api/user', userRoutes);
+
+// Default route
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });

@@ -1,17 +1,35 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
+import axios from "axios";
+// import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
-const AdminLogin = () => {
+// const navigate = useNavigate();  // Hook to get navigate function
+// const location = useLocation(); 
+
+const Login = () => {
+  const navigate = useNavigate();  // Correct hook for navigation
+  const location = useLocation(); 
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // Handle login logic here
+  const onSubmit = async (data) => {
+
+    const response = await axios.post('http://localhost:9000/api/user/login', data);
+    console.log(response.data.token); 
+
+    if (response.data.token) {
+    sessionStorage.setItem('token', response.data.token);
+    const redirectTo = location.state?.from || '/';  // If no state, go to home page
+    navigate(redirectTo);
+    }
+    
   };
 
   return (
@@ -27,7 +45,7 @@ const AdminLogin = () => {
           style={{ maxWidth: "400px", width: "100%" }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h3 className="text-center mb-4">Admin Login</h3>
+          <h3 className="text-center mb-4">Login</h3>
 
           {/* Username Field */}
           <div className="mb-3">
@@ -73,16 +91,9 @@ const AdminLogin = () => {
           <button type="submit" className="btn btn-primary w-100">
             Login
           </button>
-
-          {/* Forgot Password Link */}
-          <div className="text-center mt-3">
-            <a href="#" className="text-decoration-none">
-              Forgot Password
-            </a>
-          </div>
         </form>
       </div>
     </>
   );
 };
-export default AdminLogin;
+export default Login;

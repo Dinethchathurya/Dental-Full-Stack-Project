@@ -8,7 +8,7 @@ const Appointments = () => {
       <div className="mt-4">
         <h3 className="text-center">Appointments by Doctor</h3>
         <select className="form-select mb-3" onChange={(e) => setDoctor(e.target.value)} value={doctor}>
-          <option selected>Select Doctor</option>
+          <option value="">Select Doctor</option> {/* Set value to an empty string for the default option */}
           <option value="1">Dr Lahiru Rajakaruna</option>
           <option value="2">Dr Deepali Nanayakkara</option>
           <option value="3">Dr Malinda Senadhirathna</option>
