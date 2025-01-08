@@ -5,6 +5,7 @@ import Appointments from "../components/admin/Appointments.jsx";
 import AddDoctorModal from "../components/admin/AddDoctorModal.jsx";
 import PriceList from "../components/admin/PriceList.jsx";
 import { Helmet } from 'react-helmet-async';
+import ContactUsDetails from "../components/admin/contactUsDetails.jsx";
 
 
 
@@ -23,6 +24,8 @@ const AdminDashboard = () => {
         <Appointments />
         <AddDoctorModal />
         <PriceList />
+        <ContactUsDetails />
+
       </div>
     </div>
     </>
