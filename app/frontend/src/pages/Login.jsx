@@ -1,10 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
-import axios, { Axios } from "axios";
+import axios from "axios";
+// import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+
+// const navigate = useNavigate();  // Hook to get navigate function
+// const location = useLocation(); 
 
 const Login = () => {
+  const navigate = useNavigate();  // Correct hook for navigation
+  const location = useLocation(); 
+  
   const {
     register,
     handleSubmit,
@@ -12,9 +20,15 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+
     const response = await axios.post('http://localhost:9000/api/user/login', data);
     console.log(response.data.token); 
+
+    if (response.data.token) {
     sessionStorage.setItem('token', response.data.token);
+    const redirectTo = location.state?.from || '/';  // If no state, go to home page
+    navigate(redirectTo);
+    }
     
   };
 

@@ -4,8 +4,8 @@ import authMiddleware from '../middlewares/authMiddleware' ;
 const router = express.Router();
 
 // Protected Route
-router.get('/dashboard', authMiddleware, (req, res) => {
-  res.json({ message: `Welcome ${req.user.email}, you have access to this route.` });
+router.post('/booking', authMiddleware, (req, res) => {
+  res.json({ message: `Welcome , you have access to this route.` });
 });
 
 module.exports = router;
