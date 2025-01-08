@@ -13,7 +13,7 @@ export const login = async (req, res) => {
       // Check if user exists
       const user = await User.findOne({ email });
       if (!user) {
-        console.log("")
+        console.log("Invalid credentials")
         return res.status(400).json({ message: 'Invalid credentials' });
 
       }
@@ -21,7 +21,7 @@ export const login = async (req, res) => {
       // Compare passwords
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        console.log("")
+        console.log("Invalid credentials")
         return res.status(400).json({ message: 'Invalid credentials' });
         
       }
@@ -31,7 +31,7 @@ export const login = async (req, res) => {
         expiresIn: '1h', // Token expires in 1 hour
       });
 
-      console.log( " jwt token: " + token);
+      console.log( "jwt token: " + token);
   
       res.json({
         token,
