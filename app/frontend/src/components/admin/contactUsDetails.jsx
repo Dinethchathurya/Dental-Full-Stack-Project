@@ -1,11 +1,29 @@
-import React from "react";
-import AddServiceModal from "./AddServiceModel";
-import EditServiceModal from "./EditServiceModel";
-import PriceListDropDown from "./priceListDropDown";
-import DashboardButton from "./adminComponents/dashboardButton";
+import React, { useEffect, useState } from "react";
 import DashboardSectionHedding from "./adminComponents/dashboardSectionHedding";
+import axios from "axios";
+import DashboardTableRow from "./adminComponents/dashboardTableRow";
 
 const ContactUsDetails = () => {
+  const [contactUsDetails, setContactUsDetails] = useState([]);
+
+  async function fetchContactUsDetails() {
+    try {
+      const response = await axios.get(
+        "http://localhost:9000/api/admin/getcontactus"
+      );
+      if (response.data) {
+        console.log(response.data);
+        setContactUsDetails(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchContactUsDetails();
+  }, []);
+
   return (
     <>
       <section id="price-list" className="shadow-box bg-custom-blue">
@@ -19,7 +37,18 @@ const ContactUsDetails = () => {
                 <th>Message</th>
               </tr>
             </thead>
-            <tbody>{/* <!-- Doctors--> */}</tbody>
+            <tbody>
+              {contactUsDetails.map((ContactDetail) => {
+                return (
+                  <DashboardTableRow
+                    key={ContactDetail._id}
+                    name={ContactDetail.name}
+                    email={ContactDetail.email}
+                    msg={ContactDetail.message}
+                  />
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </section>
