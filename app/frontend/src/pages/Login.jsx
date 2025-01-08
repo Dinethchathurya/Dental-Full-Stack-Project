@@ -12,8 +12,10 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const response = await axios.post('http://localhost:9000/api/user/login', data).then(navigate('/'));
-    console.log(data); 
+    const response = await axios.post('http://localhost:9000/api/user/login', data);
+    console.log(response.data.token); 
+    sessionStorage.setItem('token', response.data.token);
+    
   };
 
   return (
