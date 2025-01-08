@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
+import axios, { Axios } from "axios";
 
 
 const Login = () => {
@@ -10,8 +11,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // Handle login logic here
+  const onSubmit = async (data) => {
+    const response = await axios.post('http://localhost:9000/api/user/login', data).then(navigate('/'));
+    console.log(data); 
   };
 
   return (

@@ -3,7 +3,7 @@ import User from '../models/userModel.js';
 
 // Register new user
 export const registerUser = async (req, res) => {
-    console.log("called");
+  console.log("called");
   const { username, password } = req.body;
   try {
     // Check if the user already exists
@@ -29,21 +29,4 @@ export const registerUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 
-//   try {
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const newUser = new User({
-//       username,
-//       password: hashedPassword,
-//     });
-
-//     const savedUser = await newUser.save();
-
-//     res.status(201).json(savedUser);
-//     console.log("user Registerd");
-//     console.log(savedUser);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//     console.log(error)
-//   }
 };
