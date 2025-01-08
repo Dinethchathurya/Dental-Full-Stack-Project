@@ -6,37 +6,33 @@ import Booking from "./pages/booking";
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import { Routes, Route } from "react-router";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
 import Register from "./pages/register";
-import ProtectedRoute from "./protectedRoutes/userProtedRoute";
-
+import ProtectedRoute from "./protectedRoutes/userProtectedRoute";
 
 function App() {
   return (
     <>
-    <HelmetProvider>
-      <Routes>
-        <Route path="/" element={< HomePage/>} />
-        <Route path="/price" element={<Price />} />
-        <Route path="/ourteam" element={<OurTeam />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="register" element={<Register/>} />
+      <HelmetProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/price" element={<Price />} />
+          <Route path="/ourteam" element={<OurTeam />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="register" element={<Register />} />
 
-
-        {/* <Route path="/booking" element={<Booking />} /> */}
-        <Route
-    path="/booking"
-    element={
-      <ProtectedRoute>
-        <Booking />
-      </ProtectedRoute>
-    }
-  />
-
-
-        <Route path="/dashbord" element={<AdminDashboard/>} />
-      </Routes>
-    </HelmetProvider>
+          {/* <Route path="/booking" element={<Booking />} /> */}
+          <Route
+            path="/booking"
+            element={
+              <ProtectedRoute>
+                <Booking />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/dashbord" element={<AdminDashboard />} />
+        </Routes>
+      </HelmetProvider>
     </>
   );
 }
