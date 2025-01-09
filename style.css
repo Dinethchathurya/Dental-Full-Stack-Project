@@ -173,12 +173,9 @@
 
  /* OurTeam */
  .shaded-section {
-
    padding: 50px 15px;
    border-radius: 10px;
-
    margin-bottom: 30px;
-
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
  }
@@ -280,3 +277,48 @@
  .btn.btn-primary.mb-3 {
    width: 200px;
  }
+
+
+
+ /* View Appoinment*/
+
+ .shaded-section {
+  padding: 50px 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-card1 {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  /* width: 300px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card1 img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-card1 h5 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.profile-card1 p {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
