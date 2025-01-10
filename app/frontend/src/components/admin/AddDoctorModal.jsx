@@ -32,8 +32,6 @@ const AddDoctorModal = () => {
     }
   };
 
- 
-
   async function getDoctors() {
     try {
       const response = await axios.get("http://localhost:9000/api/admin/getdoctors");
