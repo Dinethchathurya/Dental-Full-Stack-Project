@@ -2,8 +2,10 @@ import express, { json } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import connectDB from './config/db.js';
-import userRoutes from './routes/ userRoutes.js'
+import authRoutes from './routes/authRoutes.js';
 import { configDotenv } from 'dotenv';
+import basicRoutes from "./routes/basicRoutes.js"
+import adminRoutes from "./routes/adminRoutes.js"
 
 configDotenv();
 const app = express();
@@ -17,7 +19,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api/user', userRoutes);
+app.use('/api/user', authRoutes);
+
+app.use('', basicRoutes)
+
+app.use('/api/admin', adminRoutes)
 
 // Default route
 app.get('/', (req, res) => {

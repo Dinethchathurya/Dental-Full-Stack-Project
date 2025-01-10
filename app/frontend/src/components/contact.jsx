@@ -1,15 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Contact = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const response = await axios.post("http://localhost:9000/contactus", data);
+    if (response.data) {
+      reset();
+      alert("message saved");
+    }
+    
   };
 
   return (
