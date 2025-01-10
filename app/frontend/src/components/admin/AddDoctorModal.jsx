@@ -16,7 +16,6 @@ const AddDoctorModal = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data); 
     
     try {
       const response = await axios.post("http://localhost:9000/api/admin/addDoctor", data);
@@ -36,7 +35,6 @@ const AddDoctorModal = () => {
     try {
       const response = await axios.get("http://localhost:9000/api/admin/getdoctors");
       if (response.data) {
-        console.log(response.data[0]);
         setDoctors(response.data);
       }
       
