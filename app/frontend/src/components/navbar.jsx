@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import { HashLink } from 'react-router-hash-link';
 
 const NavbarComponent = () => {
   return (
@@ -27,49 +28,49 @@ const NavbarComponent = () => {
                 <Link to="/" className="nav-link text-white" style={{ fontSize: "1.2rem" }} >Home</Link>
               </li>
               <li className="nav-item">
-                <a
+                <HashLink
                   className="nav-link text-white"
-                  href="#about"
+                  to="/#about"
                   style={{ fontSize: "1.2rem" }}
                 >
                   About Us
-                </a>
+                </HashLink>
               </li>
               <li className="nav-item">
-                <a
+                <HashLink
                   className="nav-link text-white"
-                  href="#services"
+                  to="/#services"
                   style={{ fontSize: "1.2rem" }}
                 >
                   Services
-                </a>
+                </HashLink>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link text-white"
-                  href="#prices"
+                  to="/price"
                   style={{ fontSize: "1.2rem" }}
                 >
                   Prices
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link text-white"
-                  href="#ourteam"
+                  to="/ourteam"
                   style={{ fontSize: "1.2rem" }}
                 >
                   Our Team
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <HashLink
                   className="nav-link text-white"
-                  href="#contact"
+                  to="/#contact"
                   style={{ fontSize: "1.2rem" }}
                 >
                   Contact
-                </a>
+                </HashLink>
               </li>
             </ul>
             {/* Book Now Button */}
