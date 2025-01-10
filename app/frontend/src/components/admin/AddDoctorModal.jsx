@@ -54,7 +54,7 @@ const AddDoctorModal = () => {
     <>
       <section id="Team" className="shadow-box bg-custom-blue">
       <div className="mt-4">
-        <h3 className="text-center">Doctors List</h3>
+        <h3 className="text-center">Doctors</h3>
         <button
           className="btn btn-primary mb-3"
           data-bs-toggle="modal"

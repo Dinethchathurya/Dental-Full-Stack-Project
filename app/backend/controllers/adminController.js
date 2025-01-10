@@ -1,9 +1,9 @@
 import Availabledate from "../models/availableDate.js";
-import DoctorModel from "../models/doctorModel.js"
+import DoctorModel from "../models/doctorModel.js";
+import ServiceModel from "../models/services.js";
 
 export const AdminAddNewDoctor = async (req, res) => {
     const {doctorName, doctorSpecialty, doctorRegistration} = req.body;
-    console.log(req.body);
     try {
         const newDoctor = new DoctorModel({
             name : doctorName, 
@@ -12,8 +12,10 @@ export const AdminAddNewDoctor = async (req, res) => {
         });
 
         const newOne = await newDoctor.save();
-        console.log("Doctor registerd");
-        res.json("Doctor registerd");
+        if (newOne) {
+            console.log("Doctor registerd");
+            res.json("Doctor registerd");
+        }
 
       } catch (error) {
         res.status(500).json({ message: error.message });
@@ -54,3 +56,18 @@ export const AdminAddDate = async (req,res) =>{
     }
 };
 
+export const AdminAddService = async (req, res) => {
+    const {serviceName, servicePrice} = req.body;
+        try {
+        const newService = new ServiceModel({
+            name :serviceName,
+            price: servicePrice,
+
+        }); 
+
+         const saved = await newService.save();
+         res.json("success");
+    } catch (error) {
+        console.log(error);
+    }
+}

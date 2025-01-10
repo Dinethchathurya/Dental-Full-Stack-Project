@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import DashboardDoctorTableRow from "./adminComponents/dashboardDoctorTableRow";
 import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
 import DashboardDatesTableRow from "./adminComponents/dashboardDatesTableRow";
 
@@ -17,7 +16,6 @@ const AddAvailableDateModal = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
 
     try {
       const response = await axios.post(
@@ -41,7 +39,6 @@ const AddAvailableDateModal = () => {
         "http://localhost:9000/api/admin/getdoctors"
       );
       if (response.data) {
-        console.log(response.data[0]);
         setDoctors(response.data);
       }
     } catch (error) {
@@ -55,7 +52,6 @@ const AddAvailableDateModal = () => {
             "http://localhost:9000/getdates"
           );
           if (response.data) {
-            console.log(response.data);
             setDates(response.data);
           }
     } catch (error) {
@@ -76,13 +72,13 @@ const AddAvailableDateModal = () => {
           <button
             className="btn btn-primary mb-3"
             data-bs-toggle="modal"
-            data-bs-target="#addDoctorModal"
+            data-bs-target="#addDateModal"
           >
             Add New Date
           </button>
           <table className="table table-striped " id="doctorTable">
             <thead>
-              <tr className="text-center">
+              <tr>
                 <th>Doctor Name</th>
                 <th>Date</th>
               </tr>
@@ -102,9 +98,9 @@ const AddAvailableDateModal = () => {
         </div>
         <div
           className="modal fade"
-          id="addDoctorModal"
+          id="addDateModal"
           tabIndex="-1"
-          aria-labelledby="addDoctorModalLabel"
+          aria-labelledby="addDateModalLabel"
           aria-hidden="true"
         >
           <div className="modal-dialog">
@@ -112,7 +108,7 @@ const AddAvailableDateModal = () => {
               <div className="modal-header text-custom-blue">
                 <h5
                   className="modal-title text-center"
-                  id="addDoctorModalLabel"
+                  id="addDateModalLabel"
                 >
                   Add New Date
                 </h5>
