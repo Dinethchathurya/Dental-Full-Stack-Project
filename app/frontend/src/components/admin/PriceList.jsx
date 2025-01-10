@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AddServiceModal from "./AddServiceModel";
 import EditServiceModal from "./EditServiceModel";
-import PriceListDropDown from "./priceListDropDown";
 import DashboardButton from "./adminComponents/dashboardButton";
 import DashboardSectionHedding from "./adminComponents/dashboardSectionHedding";
 
@@ -18,19 +17,28 @@ const PriceList = () => {
             buttonName={"Add New Service"}
             target={"#addServiceModal"}
           />
-
-          <PriceListDropDown />
-
-          <DashboardButton
-            buttonName={"Show Services"}
-            target={"#editServiceModal"}
-          />
-
-          {/* <!-- Add Service Modal --> */}
           <AddServiceModal />
 
-          {/* <!-- Edit Service Modal --> */}
-          <EditServiceModal />
+          <table className="table table-striped " id="doctorTable">
+            <thead>
+              <tr className="text-center">
+                <th>Name</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* {contactUsDetails.map((ContactDetail) => {
+                return (
+                  <DashboardTableRow
+                    key={ContactDetail._id}
+                    name={ContactDetail.name}
+                    email={ContactDetail.email}
+                    msg={ContactDetail.message}
+                  />
+                );
+              })} */}
+            </tbody>
+          </table>
         </div>
       </section>
     </>

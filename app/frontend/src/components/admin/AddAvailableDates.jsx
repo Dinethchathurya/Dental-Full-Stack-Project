@@ -76,7 +76,7 @@ const AddAvailableDateModal = () => {
           <button
             className="btn btn-primary mb-3"
             data-bs-toggle="modal"
-            data-bs-target="#addDoctorModal"
+            data-bs-target="#addDateModal"
           >
             Add New Date
           </button>
@@ -102,9 +102,9 @@ const AddAvailableDateModal = () => {
         </div>
         <div
           className="modal fade"
-          id="addDoctorModal"
+          id="addDateModal"
           tabIndex="-1"
-          aria-labelledby="addDoctorModalLabel"
+          aria-labelledby="addDateModalLabel"
           aria-hidden="true"
         >
           <div className="modal-dialog">
@@ -112,7 +112,7 @@ const AddAvailableDateModal = () => {
               <div className="modal-header text-custom-blue">
                 <h5
                   className="modal-title text-center"
-                  id="addDoctorModalLabel"
+                  id="addDateModalLabel"
                 >
                   Add New Date
                 </h5>
