@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DashboardAppoimentsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
+import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
 
 const Appointments = () => {
   const [doctor, setDoctor] = useState("");
@@ -37,7 +37,7 @@ const Appointments = () => {
           <option value="4">Dr Dinali Gayasha</option> */}
           {doctors.map((doctor)=>{
             return(
-              <DashboardAppoimentsDoctorOption 
+              <DashboardAppoimantsDoctorOption 
                 key={doctor._id}
                 value={doctor._id}
                 option={doctor.name}
