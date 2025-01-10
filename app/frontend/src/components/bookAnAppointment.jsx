@@ -87,30 +87,6 @@ const BookAnAppointment = () => {
                   )}
                 </div>
 
-                {/* Service */}
-                <div className="mb-3">
-                  <label htmlFor="service" className="form-label">
-                    Service
-                  </label>
-                  <select
-                    className="form-select"
-                    id="service"
-                    {...register("service", {
-                      required: "Please select a service",
-                    })}
-                  >
-                    <option value="">Select the service</option>
-                    <option value="1">Teeth Whitening</option>
-                    <option value="2">Dental Implants</option>
-                    <option value="3">Braces & Invisalign</option>
-                  </select>
-                  {errors.service && (
-                    <span className="text-danger">
-                      {errors.service.message}
-                    </span>
-                  )}
-                </div>
-
                 {/* Doctor */}
                 <div className="mb-3">
                   <label htmlFor="doctor" className="form-label">

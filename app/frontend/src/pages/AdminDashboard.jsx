@@ -6,6 +6,7 @@ import AddDoctorModal from "../components/admin/AddDoctorModal.jsx";
 import PriceList from "../components/admin/PriceList.jsx";
 import { Helmet } from 'react-helmet-async';
 import ContactUsDetails from "../components/admin/contactUsDetails.jsx";
+import AddAvailableDateModal from "../components/admin/AddAvailableDates.jsx";
 
 
 
@@ -22,6 +23,7 @@ const AdminDashboard = () => {
       <div className="flex-grow-1">
         <Navbar />
         <Appointments />
+        <AddAvailableDateModal />
         <AddDoctorModal />
         <PriceList />
         <ContactUsDetails />

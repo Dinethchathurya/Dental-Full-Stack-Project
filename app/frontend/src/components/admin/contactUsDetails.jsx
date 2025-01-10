@@ -12,7 +12,6 @@ const ContactUsDetails = () => {
         "http://localhost:9000/api/admin/getcontactus"
       );
       if (response.data) {
-        console.log(response.data);
         setContactUsDetails(response.data);
       }
     } catch (error) {

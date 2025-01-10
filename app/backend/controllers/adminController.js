@@ -1,3 +1,4 @@
+import Availabledate from "../models/availableDate.js";
 import DoctorModel from "../models/doctorModel.js"
 
 export const AdminAddNewDoctor = async (req, res) => {
@@ -32,3 +33,24 @@ export const AdminGetDoctors = async (req, res) => {
     }
 
 };
+
+export const AdminAddDate = async (req,res) =>{
+
+    const {doctor, appointmentDate} = req.body;
+
+    try {
+        const newDate = new Availabledate({
+            doctor_id : doctor,
+            date : appointmentDate,
+        });
+
+        const addedDate = await newDate.save();
+        if (addedDate) {
+            res.json("date added");
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
