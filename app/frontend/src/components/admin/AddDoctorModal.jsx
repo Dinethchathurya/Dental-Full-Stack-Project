@@ -1,16 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import DashboardDoctorTableRow from "./adminComponents/dashboardDoctorTableRow";
 
 const AddDoctorModal = () => {
+
+  const [doctors , setDoctors] = useState([]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
+    
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // You can handle the form submission logic here
+  const onSubmit = async (data) => {
+    console.log(data); 
+    
+    try {
+      const response = await axios.post("http://localhost:9000/api/admin/addDoctor", data);
+      if (response.data) {
+        alert(response.data);
+        reset();
+        getDoctors();
+      }
+      
+    } catch (error) {
+      console.log(error);
+      alert("something wrong");
+    }
   };
+
+ 
+
+  async function getDoctors() {
+    try {
+      const response = await axios.get("http://localhost:9000/api/admin/getdoctors");
+      if (response.data) {
+        console.log(response.data[0]);
+        setDoctors(response.data);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    } 
+    
+  }
+
+  useEffect(() => {
+    getDoctors();
+
+  }, []);
+
 
   return (
     <>
@@ -30,10 +72,20 @@ const AddDoctorModal = () => {
               <th>Doctor Name</th>
               <th>Specialty</th>
               <th>Registration Number</th>
-              <th>Action</th>
             </tr>
           </thead>
-          <tbody>{/* <!-- Doctors--> */}</tbody>
+          <tbody>
+              {doctors.map((doctor) => {
+                return(
+                  <DashboardDoctorTableRow 
+                  key={doctor._id}
+                  name={doctor.name}
+                  registrationNumber={doctor.registrationNumber}
+                  specialty={doctor.specialty}
+                />
+                );
+              })}
+          </tbody>
         </table>
       </div>
       <div
