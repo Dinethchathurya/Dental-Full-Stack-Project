@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 
-const AddServiceModal = () => {
-
+const AddServiceModal = (props) => {
   const {
     register,
     handleSubmit,
@@ -19,6 +18,7 @@ const AddServiceModal = () => {
       if (response.data) {
         alert(response.data);
         reset();
+        props.func();
       }
       
     } catch (error) {

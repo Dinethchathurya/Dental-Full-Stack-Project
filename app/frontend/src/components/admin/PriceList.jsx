@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddServiceModal from "./AddServiceModel";
-import EditServiceModal from "./EditServiceModel";
 import DashboardButton from "./adminComponents/dashboardButton";
 import DashboardSectionHedding from "./adminComponents/dashboardSectionHedding";
+import DashboardPriceListTableRow from "./adminComponents/dashboardPriceListTableRow";
+import axios from "axios";
 
 const PriceList = () => {
+
+  const [services, setServices] = useState([]);
+
+  async function GetServices() {
+    try {
+      const response = await axios.get(
+        "http://localhost:9000/getservices"
+      );
+      if (response.data) {
+        setServices(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(()=>{
+    GetServices();
+
+  },[]);
+
+
   return (
     <>
       <section id="price-list" className="shadow-box bg-custom-blue">
@@ -17,26 +40,28 @@ const PriceList = () => {
             buttonName={"Add New Service"}
             target={"#addServiceModal"}
           />
-          <AddServiceModal />
+          <AddServiceModal 
+            func = {GetServices}
+          />
 
           <table className="table table-striped " id="doctorTable">
             <thead>
-              <tr className="text-center">
+              <tr >
                 <th>Name</th>
                 <th>Price</th>
               </tr>
             </thead>
             <tbody>
-              {/* {contactUsDetails.map((ContactDetail) => {
-                return (
-                  <DashboardTableRow
-                    key={ContactDetail._id}
-                    name={ContactDetail.name}
-                    email={ContactDetail.email}
-                    msg={ContactDetail.message}
-                  />
-                );
-              })} */}
+              {services.map((service) => {
+                  return(
+                    <DashboardPriceListTableRow 
+                      key = {service._id}
+                      name = {service.name}
+                      price = {service.price}
+                    />
+                  );
+                }
+              )}
             </tbody>
           </table>
         </div>

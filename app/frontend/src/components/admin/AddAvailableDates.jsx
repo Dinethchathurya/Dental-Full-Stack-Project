@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import DashboardDoctorTableRow from "./adminComponents/dashboardDoctorTableRow";
 import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
 import DashboardDatesTableRow from "./adminComponents/dashboardDatesTableRow";
 
@@ -17,7 +16,6 @@ const AddAvailableDateModal = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
 
     try {
       const response = await axios.post(
@@ -41,7 +39,6 @@ const AddAvailableDateModal = () => {
         "http://localhost:9000/api/admin/getdoctors"
       );
       if (response.data) {
-        console.log(response.data[0]);
         setDoctors(response.data);
       }
     } catch (error) {
@@ -55,7 +52,6 @@ const AddAvailableDateModal = () => {
             "http://localhost:9000/getdates"
           );
           if (response.data) {
-            console.log(response.data);
             setDates(response.data);
           }
     } catch (error) {
@@ -82,7 +78,7 @@ const AddAvailableDateModal = () => {
           </button>
           <table className="table table-striped " id="doctorTable">
             <thead>
-              <tr className="text-center">
+              <tr>
                 <th>Doctor Name</th>
                 <th>Date</th>
               </tr>
