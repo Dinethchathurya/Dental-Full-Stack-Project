@@ -1,6 +1,9 @@
 import Availabledate from "../models/availableDate.js";
 import Doctor from "../models/doctorModel.js"; 
 import serviceModel from "../models/services.js";
+import Stripe from "stripe";
+const stripe = new Stripe('sk_test_51Qg5RMRbw5Znp41bpA9rmVFmJ5UVN3um7rCq0ilKgbr2KtcP60Rz0CTMOc7jncIC20D34ZV1hTpWZNX2IU4tONct00scAwd6Te');
+
 
 export const GetAvailableDates = async (req, res) => {
     try {
@@ -42,4 +45,26 @@ export const GetServices = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const CreateaPymentIntent = async (req, res) => {
+  console.log(req.body);
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 100.00,
+      currency: "usd",
+      automatic_payment_methods: { enabled: true },
+    });
+
+    console.log("done" );
+
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+    console.log(error);
+  }
+
 };

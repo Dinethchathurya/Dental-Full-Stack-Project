@@ -1,16 +1,34 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Stripe from "stripe";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const BookAnAppointment = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-    
-      const onSubmit = (data) => {
-        console.log("Form Data:", data);
-      };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+
+    console.log("Form Data:", data);
+    try {
+      const response = await axios.post(
+        "http://localhost:9000/create-payment-intent",
+        data
+      );
+      if (response) {
+        console.log(response.data.clientSecret);
+      }
+      const clientSecret  = response.data.clientSecret;
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
