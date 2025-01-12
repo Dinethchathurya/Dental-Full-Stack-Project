@@ -27,8 +27,16 @@ const Login = () => {
 
     if (response.data.token) {
     sessionStorage.setItem('token', response.data.token);
-    const redirectTo = location.state?.from || '/';  // If no state, go to home page
-    navigate(redirectTo);
+    const redirectTo = location.state?.from || '/';  
+      console.log(response.data.user.isAdmin)
+    if (response.data.user.isAdmin) {
+      sessionStorage.setItem('isAdmin', true);
+      navigate("/dashboard");
+    }else {
+      navigate(redirectTo);
+    }
+    
+
     }
     
   };
@@ -92,7 +100,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary w-100">
             Login
           </button>
-          <Link to="/register">Register</Link>
+          <Link to="/register" state={{ from: location.pathname }}>Register</Link>
         </form>
       </div>
     </>

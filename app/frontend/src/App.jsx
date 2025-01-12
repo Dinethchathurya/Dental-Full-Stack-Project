@@ -14,6 +14,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router";
 import CompletePage from "./pages/CompletePage";
+import AdminRoute from "./protectedRoutes/adminProtectedRoute";
 
 function App() {
   const appearance = {
@@ -74,9 +75,14 @@ function App() {
             }
           />
 
+          <Route path="/dashboard" element={
+            <AdminRoute >
+              <AdminDashboard />
+            </AdminRoute>
+            } 
+          />
 
 
-          <Route path="/dashbord" element={<AdminDashboard />} />
         </Routes>
       </HelmetProvider>
     </>
