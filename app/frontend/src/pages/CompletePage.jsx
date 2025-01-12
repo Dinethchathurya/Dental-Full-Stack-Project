@@ -59,6 +59,7 @@ export default function CompletePage() {
           sessionStorage.setItem("bookingSaved", "true");
         }
       }
+    
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);
@@ -66,7 +67,9 @@ export default function CompletePage() {
   }
   return (
     <>
-      {intentId ? (
+      {(intentId &&
+        clientSecret &&
+        status == "succeeded")? (
         <div style={styles.container}>
           <div style={styles.card}>
             <h1 style={styles.title}>Thank You!</h1>
@@ -77,7 +80,10 @@ export default function CompletePage() {
             </p>
             <button
               style={styles.button}
-              onClick={() => (window.location.href = "/")}
+              onClick={() => {
+                sessionStorage.clear(); 
+                window.location.href = "/"; 
+              }}
             >
               Back To Home
             </button>

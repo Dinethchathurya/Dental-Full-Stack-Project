@@ -6,7 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import { configDotenv } from 'dotenv';
 import basicRoutes from "./routes/basicRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
-import { WebSocketServer } from 'ws';
+import { connectWebSocket } from './controllers/useController.js';
 
 configDotenv();
 const app = express();
@@ -14,6 +14,10 @@ const port = process.env.PORT;
 
 // Connect to MongoDB
 connectDB();
+
+//connect with websocket
+connectWebSocket();
+
 
 // Middleware
 app.use(cors());
@@ -29,24 +33,9 @@ app.use('', basicRoutes);
 
 app.use('/api/admin', adminRoutes);
 
-
-
 // Default route
 app.get('/', (req, res) => {
   res.send('Hello, World!');
-});
-
-
-
-const wss = new WebSocketServer({ port: 8080 }); 
-
-wss.on('connection', (ws) => {
-  console.log("A client connected to the WebSocket server.");
-  ws.on('message', (message) => {
-    console.log("Received message:", message);
-  });
-
-  ws.send("Hello from WebSocket server!");
 });
 
 
