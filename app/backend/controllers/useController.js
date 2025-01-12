@@ -2,14 +2,12 @@ import Availabledate from "../models/availableDate.js";
 import Doctor from "../models/doctorModel.js"; 
 import serviceModel from "../models/services.js";
 import Stripe from "stripe";
-import doctor from "../models/doctorModel.js";
+import BookingModel from "../models/bookingDetails.js"
 const stripe = new Stripe('sk_test_51Qg5RMRbw5Znp41bpA9rmVFmJ5UVN3um7rCq0ilKgbr2KtcP60Rz0CTMOc7jncIC20D34ZV1hTpWZNX2IU4tONct00scAwd6Te');
-
 
 export const GetAvailableDates = async (req, res) => {
     try {
       const dates = await Availabledate.find();
-  
       const today = new Date();
       today.setHours(0, 0, 0, 0); 
   
@@ -35,7 +33,6 @@ export const GetAvailableDates = async (req, res) => {
     }
 };
 
-
 export const GetServices = async (req, res) => {
     try {
         const services = await serviceModel.find();
@@ -49,15 +46,34 @@ export const GetServices = async (req, res) => {
 };
 
 export const CreateaPymentIntent = async (req, res) => {
-  console.log(req.body);
+  const { selectedPrice, patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 100.00,
+      amount: Math.round(Number(selectedPrice) * 100),
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
 
     console.log("done" );
+    
+
+
+    const newBooking = new BookingModel({
+      patientName,
+      mobileNumber,
+      emailAddress,
+      doctor,
+      service,
+      appointmentDate,
+      price: selectedPrice,
+      payment : false,
+    });
+
+    const saved = await newBooking.save();
+
+    if (saved) {
+      console.log("book was added");
+    }
 
     res.send({
       clientSecret: paymentIntent.client_secret,
@@ -67,7 +83,6 @@ export const CreateaPymentIntent = async (req, res) => {
     res.status(500).send({ error: error.message });
     console.log(error);
   }
-
 };
 
 export const GetDoctors = async (req, res) => {
@@ -81,5 +96,26 @@ export const GetDoctors = async (req, res) => {
       console.log(error);
       res.status(500).json({ message: error.message });
   }
+};
 
+export const SaveBookingDetails = async (req, res) => {
+  const { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
+
+  try {
+    // Check if the booking already exists based on unique details
+    const updatedBooking = await BookingModel.findOneAndUpdate(
+      { patientName: patientName, mobileNumber: mobileNumber, emailAddress:emailAddress, doctor:doctor, service:service, appointmentDate:appointmentDate, price:price},  // Find the document using email and appointment date
+      { $set: { payment: true } }, // Update the payment field to true
+      { new: true } // Return the updated document
+    );
+
+    if (updatedBooking) {
+      console.log(updatedBooking);
+    }
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error saving booking." });
+  }
 };

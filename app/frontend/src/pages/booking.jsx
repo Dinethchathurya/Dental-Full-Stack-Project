@@ -101,7 +101,7 @@ const Booking = () => {
         <OpenTimes />
       </div>
 
-
+      
       <Footer />
     </>
   );
