@@ -13,8 +13,8 @@ export const AdminAddNewDoctor = async (req, res) => {
 
         const newOne = await newDoctor.save();
         if (newOne) {
-            console.log("Doctor registerd");
-            res.json("Doctor registerd");
+            console.log("Doctor registered");
+            res.json("Doctor registered");
         }
 
       } catch (error) {

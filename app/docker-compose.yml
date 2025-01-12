@@ -21,6 +21,7 @@ services:
       dockerfile: dockerfile   
     ports:
       - "9000:9000" 
+      - "8080:8080"
     command: npm start
     volumes:
       - ./backend:/app       
@@ -28,7 +29,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://localhost:27017/dental
+      - MONGO_URI=mongodb://mongo:27017/dental
     networks:
       - mynetwork
 
@@ -58,3 +59,4 @@ volumes:
 
 networks:
   mynetwork:
+    driver: bridge

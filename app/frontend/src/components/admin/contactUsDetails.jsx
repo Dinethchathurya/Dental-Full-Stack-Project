@@ -30,7 +30,7 @@ const ContactUsDetails = () => {
           <DashboardSectionHedding hedding={"Contact Us"} />
           <table className="table table-striped " id="doctorTable">
             <thead>
-              <tr className="text-center">
+              <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Message</th>

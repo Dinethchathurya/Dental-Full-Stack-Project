@@ -1,16 +1,117 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import DashboardAppoimantsDoctorOption from "./admin/adminComponents/dashboardAppoimentsDoctorOption";
+import SelectOptionForDate from "./selectOptionForDate";
 
 const BookAnAppointment = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-    
-      const onSubmit = (data) => {
-        console.log("Form Data:", data);
-      };
+  const [selectedPrice, setSelectedPrice] = useState(null);
+
+  // Handler when a service is selected
+  const handleServiceChange = (e) => {
+    const selectedServiceId = e.target.value;
+
+    // Find the selected service based on the ID
+    const selectedService = services.find(
+      (service) => service._id === selectedServiceId
+    );
+
+    // If a service is selected, update the price
+    if (selectedService) {
+      setSelectedPrice(selectedService.price); // Assuming your service object has a "price" property
+    } else {
+      setSelectedPrice(null); // Reset if no service is selected
+    }
+  };
+
+  const [doctors, setDoctors] = useState([]);
+  const [dates, setDates] = useState([]);
+  const [services, setServices] = useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    console.log("Form Data:", data);
+    try {
+      const response = await axios.post(
+        "http://localhost:9000/create-payment-intent",
+        {
+          
+          patientName : data.patientName,
+          mobileNumber : data.mobileNumber,
+          emailAddress : data.emailAddress,
+          doctor : data.doctor,
+          service : data.service,
+          appointmentDate : data.appointmentDate,
+          selectedPrice :selectedPrice,
+
+        }
+      );
+      sessionStorage.setItem("patientName" , data.patientName);
+      sessionStorage.setItem("mobileNumber" , data.mobileNumber);
+      sessionStorage.setItem("emailAddress" , data.emailAddress);
+      sessionStorage.setItem("doctor" , data.doctor);
+      sessionStorage.setItem("service" , data.service);
+      sessionStorage.setItem("appointmentDate" , data.appointmentDate);
+      sessionStorage.setItem("price", selectedPrice);
+ 
+      if (response) {
+        console.log(response.data.clientSecret);
+      }
+      const clientSecret = response.data.clientSecret;
+      if (clientSecret) {
+        navigate("/checkout", {
+          state: { clientSecret: response.data.clientSecret },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  async function getDoctors() {
+    try {
+      const response = await axios.get("http://localhost:9000/getDoctors");
+      if (response.data) {
+        setDoctors(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getDates() {
+    try {
+      const response = await axios.get("http://localhost:9000/getDates");
+      if (response.data) {
+        setDates(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function GetServices() {
+    try {
+      const response = await axios.get("http://localhost:9000/getServices");
+      if (response.data) {
+        setServices(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getDoctors();
+    getDates();
+    GetServices();
+  }, []);
 
   return (
     <>
@@ -100,14 +201,57 @@ const BookAnAppointment = () => {
                     })}
                   >
                     <option value="">Select the Doctor</option>
-                    <option value="1">Dr Lahiru Rajakaruna</option>
-                    <option value="2">Dr Deepali Nanayakkara</option>
-                    <option value="3">Dr Malinda Senadhirathna</option>
-                    <option value="4">Dr Dinali Gayasha</option>
+                    {doctors.map((doctor) => {
+                      return (
+                        <DashboardAppoimantsDoctorOption
+                          key={doctor._id}
+                          value={doctor._id}
+                          option={doctor.name}
+                        />
+                      );
+                    })}
                   </select>
                   {errors.doctor && (
                     <span className="text-danger">{errors.doctor.message}</span>
                   )}
+                </div>
+
+                {/* service */}
+                <div className="mb-3">
+                  <label htmlFor="service" className="form-label">
+                    service
+                  </label>
+                  <select
+                    className="form-select"
+                    id="service"
+                    {...register("service", {
+                      required: "Please select a service",
+                    })}
+                    onChange={handleServiceChange}
+                  >
+                    <option value="">Select the service</option>
+                    {services.map((service) => {
+                      return (
+                        <DashboardAppoimantsDoctorOption
+                          key={service._id}
+                          value={service._id}
+                          option={service.name}
+                        />
+                      );
+                    })}
+                  </select>
+                  {errors.service && (
+                    <span className="text-danger">
+                      {errors.service.message}
+                    </span>
+                  )}
+                  {selectedPrice && (
+                    <div className="service-price">
+                      <p>Price: ${selectedPrice}</p>
+                    </div>
+                  )}
+
+                  {/* Display the price if a service is selected */}
                 </div>
 
                 {/* Appointment Date */}
@@ -115,18 +259,27 @@ const BookAnAppointment = () => {
                   <label htmlFor="appointmentDate" className="form-label">
                     Select a Date
                   </label>
-                  <input
-                    type="date"
-                    className="form-control"
+                  <select
+                    className="form-select"
                     id="appointmentDate"
                     {...register("appointmentDate", {
                       required: "Please select a date",
                     })}
-                  />
-                  {errors.appointmentDate && (
-                    <span className="text-danger">
-                      {errors.appointmentDate.message}
-                    </span>
+                  >
+                    <option value="">Select the date</option>
+                    {dates.map((date) => {
+                      return (
+                        <SelectOptionForDate
+                          key={date._id}
+                          value={date._id}
+                          option={date.date}
+                        />
+                      );
+                    })}
+                  </select>
+
+                  {errors.date && (
+                    <span className="text-danger">{errors.date.message}</span>
                   )}
                 </div>
 

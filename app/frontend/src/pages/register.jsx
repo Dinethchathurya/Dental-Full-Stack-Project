@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
@@ -81,6 +82,7 @@ const Register = () => {
           <button type="submit" className="btn btn-primary w-100">
             Register
           </button>
+          <Link to="/login">Login</Link>
         </form>
       </div>
     </>
