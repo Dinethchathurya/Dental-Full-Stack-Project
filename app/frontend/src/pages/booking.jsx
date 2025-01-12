@@ -10,11 +10,14 @@ import DashboardPriceListTableRow from "../components/admin/adminComponents/dash
 const Booking = () => {
 
   const [bookingCountsByDate, setBookingCountsByDate] = useState({});
-  const [selectedDate, setSelectedDate] = useState(""); 
-  const [filteredBookings, setFilteredBookings] = useState({}); 
+  const [services, setServices] = useState([]);
+  const [bookings, setBookings] = useState([]);
+
   const handleDateChange = (event) => {
     const selected = event.target.value;
-    setSelectedDate(selected); // Update the selected date
+    setSelectedDate(selected); 
+    // sessionStorage.setItem('selectedDate', selected);
+    // console.log(sessionStorage.getItem('selectedDate'));
     setFilteredBookings(bookingCountsByDate[selected] || {});
   };
   
@@ -32,7 +35,6 @@ const Booking = () => {
         const data = JSON.parse(event.data);  
         console.log("Message from server:", data);
         setBookingCountsByDate(data);
-        setFilteredBookings(bookingCountsByDate[selectedDate] || {});
 
       } catch (error) {
         console.error("Error parsing WebSocket message:", error);
@@ -49,8 +51,6 @@ const Booking = () => {
 
   }, []);
 
-  const [services, setServices] = useState([]);
-  const [bookings, setBookings] = useState([]);
 
   async function GetServices() {
     try {
@@ -122,28 +122,25 @@ const Booking = () => {
       <section id="availability" className="shadow-box bg-custom-blue">
       <div className="mt-4">
         <h3 className="text-center">availability</h3>
-        <select onChange={handleDateChange} value={selectedDate}>
-      <option value="">Select a date</option>
-      {Object.keys(bookingCountsByDate).map((date) => (
-        <option key={date} value={date}>
-          {date}
-        </option>
-      ))}
-    </select>
-        <table className="table table-striped " id="doctorTable">
+        <table className="table table-striped" id="doctorTable">
             <thead>
-              <tr >
-                <th>Doctor </th>
+              <tr>
+                <th>Date</th>
+                <th>Doctor</th>
                 <th>Booking Count</th>
               </tr>
             </thead>
             <tbody>
-            {Object.keys(filteredBookings).map((doctor) => (
-          <tr key={doctor}>
-            <td>{doctor}</td>
-            <td>{filteredBookings[doctor] +"/5"}</td>
-          </tr>
-        ))}
+              {Object.keys(bookingCountsByDate).map((date) => {
+                const bookingsForDate = bookingCountsByDate[date];
+                return Object.keys(bookingsForDate).map((doctor) => (
+                  <tr key={`${date}-${doctor}`}>
+                    <td>{date}</td>
+                    <td>{doctor}</td>
+                    <td>{bookingsForDate[doctor]}/10</td>
+                  </tr>
+                ));
+              })}
             </tbody>
           </table>
 
