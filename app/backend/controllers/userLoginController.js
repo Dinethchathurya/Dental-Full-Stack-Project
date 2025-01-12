@@ -2,9 +2,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 
-
 const JWT_SECRET = process.env.JWT_SECRET || 'yourSecretKey';
-
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;

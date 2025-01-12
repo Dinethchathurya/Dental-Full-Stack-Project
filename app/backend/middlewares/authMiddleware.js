@@ -2,8 +2,8 @@
 import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || 'yourSecretKey';
 
-const authMiddleware = (req, res, next) => {
-  const token = req.header('Authorization')?.split(' ')[1]; // Expecting 'Bearer <token>'
+const AuthMiddleware = (req, res, next) => {
+  const token = req.header('Authorization')?.split(' ')[1]; 
   if (!token) {
     return res.status(401).json({ message: 'No token, authorization denied' });
   }
@@ -17,4 +17,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+export default AuthMiddleware;

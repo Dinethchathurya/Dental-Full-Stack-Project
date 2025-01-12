@@ -4,6 +4,17 @@ import axios from "axios";
 
 
 const AddServiceModal = (props) => {
+
+
+  const token = sessionStorage.getItem('token');
+
+  // Config for Authorization header
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`, // Bearer token
+    },
+  };
+
   const {
     register,
     handleSubmit,
@@ -14,7 +25,7 @@ const AddServiceModal = (props) => {
   const onSubmit = async (data) => {
     
     try {
-      const response = await axios.post("http://localhost:9000/api/admin/addservice", data);
+      const response = await axios.post("http://localhost:9000/api/admin/addservice", data, config);
       if (response.data) {
         alert(response.data);
         reset();

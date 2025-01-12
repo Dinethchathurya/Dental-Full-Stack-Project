@@ -4,12 +4,20 @@ import axios from "axios";
 import DashboardTableRow from "./adminComponents/dashboardTableRow";
 
 const ContactUsDetails = () => {
+
+  const token = sessionStorage.getItem('token');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  
   const [contactUsDetails, setContactUsDetails] = useState([]);
 
   async function fetchContactUsDetails() {
     try {
       const response = await axios.get(
-        "http://localhost:9000/api/admin/getcontactus"
+        "http://localhost:9000/api/admin/getcontactus",config
       );
       if (response.data) {
         setContactUsDetails(response.data);

@@ -4,6 +4,15 @@ import axios from "axios";
 import DashboardDoctorTableRow from "./adminComponents/dashboardDoctorTableRow";
 
 const AddDoctorModal = () => {
+  const token = sessionStorage.getItem('token');
+
+  // Config for Authorization header
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`, // Bearer token
+    },
+  };
+
 
   const [doctors , setDoctors] = useState([]);
 
@@ -18,7 +27,7 @@ const AddDoctorModal = () => {
   const onSubmit = async (data) => {
     
     try {
-      const response = await axios.post("http://localhost:9000/api/admin/addDoctor", data);
+      const response = await axios.post("http://localhost:9000/api/admin/addDoctor", data, config);
       if (response.data) {
         alert(response.data);
         reset();
@@ -33,7 +42,7 @@ const AddDoctorModal = () => {
 
   async function getDoctors() {
     try {
-      const response = await axios.get("http://localhost:9000/api/admin/getdoctors");
+      const response = await axios.get("http://localhost:9000/api/admin/getdoctors", config);
       if (response.data) {
         setDoctors(response.data);
       }
