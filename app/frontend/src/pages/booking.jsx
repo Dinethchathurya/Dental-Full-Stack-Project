@@ -23,10 +23,14 @@ const Booking = () => {
     }
   };
 
+
+
   useEffect(()=>{
     GetServices();
+    //getDoctors();
 
   },[]);
+
   return (
     <>
       <Helmet>

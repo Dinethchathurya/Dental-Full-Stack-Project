@@ -2,6 +2,7 @@ import Availabledate from "../models/availableDate.js";
 import Doctor from "../models/doctorModel.js"; 
 import serviceModel from "../models/services.js";
 import Stripe from "stripe";
+import doctor from "../models/doctorModel.js";
 const stripe = new Stripe('sk_test_51Qg5RMRbw5Znp41bpA9rmVFmJ5UVN3um7rCq0ilKgbr2KtcP60Rz0CTMOc7jncIC20D34ZV1hTpWZNX2IU4tONct00scAwd6Te');
 
 
@@ -65,6 +66,20 @@ export const CreateaPymentIntent = async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: error.message });
     console.log(error);
+  }
+
+};
+
+export const GetDoctors = async (req, res) => {
+
+  try {
+      const doctors = await Doctor.find();
+      if (doctors) {
+          res.json(doctors);
+      }
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: error.message });
   }
 
 };

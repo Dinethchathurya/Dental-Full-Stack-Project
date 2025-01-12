@@ -1,9 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import DashboardAppoimantsDoctorOption from "./admin/adminComponents/dashboardAppoimentsDoctorOption";
 
 const BookAnAppointment = () => {
+
+  const [doctors, setDoctors] = useState([]);
+
+
   const {
     register,
     handleSubmit,
@@ -32,6 +37,26 @@ const BookAnAppointment = () => {
       console.log(error);
     }
   };
+
+
+  async function getDoctors() {
+    try {
+      const response = await axios.get("http://localhost:9000/getDoctors");
+      if (response.data) {
+        setDoctors(response.data);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    } 
+    
+  }
+
+
+    useEffect(()=>{
+      getDoctors();
+  
+    },[]);
 
   return (
     <>
@@ -121,10 +146,16 @@ const BookAnAppointment = () => {
                     })}
                   >
                     <option value="">Select the Doctor</option>
-                    <option value="1">Dr Lahiru Rajakaruna</option>
-                    <option value="2">Dr Deepali Nanayakkara</option>
-                    <option value="3">Dr Malinda Senadhirathna</option>
-                    <option value="4">Dr Dinali Gayasha</option>
+                      {doctors.map((doctor) => {
+                        return (
+                          <DashboardAppoimantsDoctorOption
+                            key={doctor._id}
+                            value={doctor._id}
+                            option={doctor.name}
+                          />
+                        );
+                      })}
+
                   </select>
                   {errors.doctor && (
                     <span className="text-danger">{errors.doctor.message}</span>
