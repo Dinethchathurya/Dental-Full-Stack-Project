@@ -11,16 +11,8 @@ const Booking = () => {
 
   const [bookingCountsByDate, setBookingCountsByDate] = useState({});
   const [services, setServices] = useState([]);
-  const [bookings, setBookings] = useState([]);
 
-  const handleDateChange = (event) => {
-    const selected = event.target.value;
-    setSelectedDate(selected); 
-    // sessionStorage.setItem('selectedDate', selected);
-    // console.log(sessionStorage.getItem('selectedDate'));
-    setFilteredBookings(bookingCountsByDate[selected] || {});
-  };
-  
+
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:8080');
@@ -64,23 +56,9 @@ const Booking = () => {
       console.log(error);
     }
   };  
-  async function GetBookingAvailable() {
-    try {
-      const response = await axios.get(
-        "http://localhost:9000/getBookingAvailable"
-      );
-      if (response.data) {
-        setBookings(response.data);
-        console.log(response.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(()=>{
     GetServices();
-    GetBookingAvailable();
   },[]);
 
   return (

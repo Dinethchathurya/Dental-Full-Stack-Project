@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/getDates" , GetAvailableDates);
 router.get("/getServices", GetServices);
 router.get("/getDoctors", GetDoctors);
-router.get("/getBookingAvailable", GetBookingsToCheckAvailability);
+router.get("/getBookings", GetBookingsToCheckAvailability);
 
 router.post('/contactus', contactUsController);
 router.post('/create-payment-intent', CreateaPymentIntent);

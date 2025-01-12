@@ -6,6 +6,7 @@ import BookingModel from "../models/bookingDetails.js"
 import wss from "../config/webSocket.js";
 const stripe = new Stripe('sk_test_51Qg5RMRbw5Znp41bpA9rmVFmJ5UVN3um7rCq0ilKgbr2KtcP60Rz0CTMOc7jncIC20D34ZV1hTpWZNX2IU4tONct00scAwd6Te');
 
+// web socket controllers / logics 
 
 const broadcastBookingUpdate = (data) => {
   wss.clients.forEach((client) => {
@@ -19,10 +20,8 @@ export const connectWebSocket = () => {
   wss.on('connection', (ws) => {
     console.log("A client connected to the WebSocket server.");
 
-    // When a client connects, fetch and send current bookings data
     sendCurrentBookings(ws);
 
-    // Handle incoming messages (if needed)
     ws.on('message', (message) => {
       console.log("Received message from client:", message);
     });
@@ -35,37 +34,31 @@ export const connectWebSocket = () => {
 
 const sendCurrentBookings = async (ws) => {
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Get today's date at 00:00:00
+  today.setHours(0, 0, 0, 0);
   
   try {
-    // Fetch bookings with necessary details
     const bookings = await BookingModel.find()
       .populate('doctor')
       .populate('service')
       .populate('appointmentDate');
     
-    // Filter for future bookings
     const futureBookings = bookings.filter(booking => {
       const appointmentDate = new Date(booking.appointmentDate.date);
       return appointmentDate >= today && booking.payment === true;
     });
 
-    // Group bookings by date, then by doctor
     const bookingCountsByDate = futureBookings.reduce((acc, booking) => {
       const appointmentDate = new Date(booking.appointmentDate.date).toISOString().split('T')[0];  // Format date as 'YYYY-MM-DD'
       const doctorName = booking.doctor.name;
 
-      // If this date doesn't exist in the accumulator, initialize it
       if (!acc[appointmentDate]) {
         acc[appointmentDate] = {};
       }
 
-      // Count bookings for each doctor under each date
       acc[appointmentDate][doctorName] = (acc[appointmentDate][doctorName] || 0) + 1;
       return acc;
     }, {});
 
-    // Send the grouped data to the client
     if (ws.readyState === ws.OPEN) {
       ws.send(JSON.stringify(bookingCountsByDate));
       console.log("Booking counts sent to client:", bookingCountsByDate);
@@ -75,51 +68,6 @@ const sendCurrentBookings = async (ws) => {
     console.error("Error fetching bookings:", error);
   }
 };
-
-// export const SaveBookingDetails = async (req, res) => {
-//   const { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
-
-//   try {
-//     const updatedBooking = await BookingModel.findOneAndUpdate(
-//       { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price },
-//       { $set: { payment: true } },
-//       { new: true }
-//     );
-
-//     if (updatedBooking) {
-//       console.log("Booking saved successfully");
-
-//       // Fetch updated booking data and broadcast to all clients
-//       const today = new Date();
-//       today.setHours(0, 0, 0, 0);
-      
-//       const bookings = await BookingModel.find()
-//         .populate('doctor')
-//         .populate('service')
-//         .populate('appointmentDate');
-      
-//       const futureBookings = bookings.filter(booking => {
-//         const appointmentDate = new Date(booking.appointmentDate.date);
-//         return appointmentDate >= today && booking.payment === true;
-//       });
-
-//       const bookingCounts = futureBookings.reduce((acc, booking) => {
-//         const doctorName = booking.doctor.name;
-//         acc[doctorName] = (acc[doctorName] || 0) + 1;
-//         return acc;
-//       }, {});
-
-//       // Broadcast updated booking counts
-//       broadcastBookingUpdate(bookingCounts);
-//     }
-
-//   } catch (error) {
-//     console.error("Error saving booking:", error);
-//     res.status(500).json({ message: "Error saving booking." });
-//   }
-// };
-
-
 
 export const SaveBookingDetails = async (req, res) => {
   const { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
@@ -134,7 +82,6 @@ export const SaveBookingDetails = async (req, res) => {
     if (updatedBooking) {
       console.log("Booking saved successfully");
 
-      // Fetch updated booking data and broadcast to all clients
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       
@@ -148,22 +95,18 @@ export const SaveBookingDetails = async (req, res) => {
         return appointmentDate >= today && booking.payment === true;
       });
 
-      // Group bookings by date, then by doctor
       const bookingCountsByDate = futureBookings.reduce((acc, booking) => {
         const appointmentDate = new Date(booking.appointmentDate.date).toISOString().split('T')[0];  // Format date as 'YYYY-MM-DD'
         const doctorName = booking.doctor.name;
 
-        // If this date doesn't exist in the accumulator, initialize it
         if (!acc[appointmentDate]) {
           acc[appointmentDate] = {};
         }
 
-        // Count bookings for each doctor under each date
         acc[appointmentDate][doctorName] = (acc[appointmentDate][doctorName] || 0) + 1;
         return acc;
       }, {});
 
-      // Broadcast updated booking counts
       broadcastBookingUpdate(bookingCountsByDate);
       res.status(200).json({ message: "Booking saved and updates broadcasted successfully." });
     } else {
@@ -176,17 +119,7 @@ export const SaveBookingDetails = async (req, res) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
+// normal controllers 
 
 export const GetAvailableDates = async (req, res) => {
     try {
@@ -279,40 +212,18 @@ export const GetDoctors = async (req, res) => {
   }
 };
 
-// export const SaveBookingDetails = async (req, res) => {
-//   const { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
-
-//   try {
-//     const updatedBooking = await BookingModel.findOneAndUpdate(
-//       { patientName: patientName, mobileNumber: mobileNumber, emailAddress:emailAddress, doctor:doctor, service:service, appointmentDate:appointmentDate, price:price},  // Find the document using email and appointment date
-//       { $set: { payment: true } }, 
-//       { new: true } 
-//     );
-
-//     if (updatedBooking) {
-//       console.log("booking success");
-//     }
-
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Error saving booking." });
-//   }
-// };
-
 export const GetBookingsToCheckAvailability = async (req, res) => {
   try {
-    const today = new Date(); // Get the current date
-    today.setHours(0, 0, 0, 0); // Set time to 00:00:00 for today's date
-    
+    const today = new Date(); 
+    today.setHours(0, 0, 0, 0); 
  
     const bookings = await BookingModel.find()
       .populate('doctor')
       .populate('service')
       .populate('appointmentDate');
     
-    // Filter bookings to only include those with appointmentDate today or in the future, and payment is true
     const futureBookings = bookings.filter(booking => {
-      const appointmentDate = new Date(booking.appointmentDate.date); // Assuming 'date' field in AvailableDate schema
+      const appointmentDate = new Date(booking.appointmentDate.date); 
       return appointmentDate >= today && booking.payment === true;
     });
 
@@ -328,3 +239,4 @@ export const GetBookingsToCheckAvailability = async (req, res) => {
     res.status(500).json({ message: 'Error fetching bookings.' });
   }
 };
+
