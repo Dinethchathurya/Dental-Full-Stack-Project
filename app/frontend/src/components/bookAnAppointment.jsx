@@ -1,9 +1,7 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Stripe from "stripe";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 
 const BookAnAppointment = () => {
   const {
@@ -12,8 +10,9 @@ const BookAnAppointment = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const navigate = useNavigate();
 
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
     try {
       const response = await axios.post(
@@ -23,8 +22,12 @@ const BookAnAppointment = () => {
       if (response) {
         console.log(response.data.clientSecret);
       }
-      const clientSecret  = response.data.clientSecret;
-
+      const clientSecret = response.data.clientSecret;
+      if (clientSecret) {
+        navigate("/checkout", {
+          state: { clientSecret: response.data.clientSecret },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
