@@ -75,6 +75,7 @@ const NavbarComponent = () => {
             </ul>
             {/* Book Now Button */}
             <Link to="/booking" className="btn btn-primary btn-lg ms-3" >Book Now</Link>
+            <Link to="/login" className="btn btn-success btn-lg ms-3" >Log In</Link>
           </div>
         </div>
       </nav>

@@ -16,7 +16,11 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:9000/api/user/register', data).then(navigate('/'));
+      const response = await axios.post('http://localhost:9000/api/user/register', data);
+
+      const redirectTo = location.state?.from || "/login";
+      navigate(redirectTo);
+
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);

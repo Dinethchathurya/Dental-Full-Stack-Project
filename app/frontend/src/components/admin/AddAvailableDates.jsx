@@ -5,6 +5,13 @@ import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimen
 import DashboardDatesTableRow from "./adminComponents/dashboardDatesTableRow";
 
 const AddAvailableDateModal = () => {
+
+  const token = sessionStorage.getItem('token');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   const [doctors, setDoctors] = useState([]);
   const [dates ,setDates] = useState([]);
 
@@ -19,8 +26,7 @@ const AddAvailableDateModal = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/admin/adddate",
-        data
+        "http://localhost:9000/api/admin/adddate",data, config
       );
       if (response.data) {
         alert(response.data);
@@ -36,7 +42,7 @@ const AddAvailableDateModal = () => {
   async function getDoctors() {
     try {
       const response = await axios.get(
-        "http://localhost:9000/api/admin/getdoctors"
+        "http://localhost:9000/api/admin/getdoctors",config
       );
       if (response.data) {
         setDoctors(response.data);

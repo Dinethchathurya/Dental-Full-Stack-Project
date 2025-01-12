@@ -3,22 +3,9 @@ import axios from "axios";
 import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
 
 const Appointments = () => {
-  const [doctor, setDoctor] = useState("");
-  const [doctors, setDoctors] = useState([]);
-    const [bookings, setBookings] = useState([]);
 
-  async function getDoctors() {
-    try {
-      const response = await axios.get("http://localhost:9000/api/admin/getdoctors");
-      if (response.data) {
-        setDoctors(response.data);
-      }
-      
-    } catch (error) {
-      console.log(error);
-    } 
-    
-  }
+  const [bookings, setBookings] = useState([]);
+
 
     async function GetBookingAvailable() {
       try {
@@ -36,7 +23,7 @@ const Appointments = () => {
   
 
   useEffect(() => {
-    getDoctors();
+
     GetBookingAvailable();
 
   }, []);

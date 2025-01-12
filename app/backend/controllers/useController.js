@@ -228,7 +228,7 @@ export const GetBookingsToCheckAvailability = async (req, res) => {
     });
 
     if (futureBookings.length > 0) {
-      console.log(futureBookings);
+ 
       res.json(futureBookings);
     } else {
       res.status(404).json({ message: 'No available bookings for today or future dates.' });
