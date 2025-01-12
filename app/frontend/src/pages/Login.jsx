@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import axios from "axios";
 // import { useNavigate, useLocation } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 // const navigate = useNavigate();  // Hook to get navigate function
@@ -91,6 +92,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary w-100">
             Login
           </button>
+          <Link to="/register">Register</Link>
         </form>
       </div>
     </>

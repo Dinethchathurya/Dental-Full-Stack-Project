@@ -55,9 +55,7 @@ export const CreateaPymentIntent = async (req, res) => {
     });
 
     console.log("done" );
-    
-
-
+  
     const newBooking = new BookingModel({
       patientName,
       mobileNumber,
@@ -102,20 +100,48 @@ export const SaveBookingDetails = async (req, res) => {
   const { patientName, mobileNumber, emailAddress, doctor, service, appointmentDate, price } = req.body;
 
   try {
-    // Check if the booking already exists based on unique details
     const updatedBooking = await BookingModel.findOneAndUpdate(
       { patientName: patientName, mobileNumber: mobileNumber, emailAddress:emailAddress, doctor:doctor, service:service, appointmentDate:appointmentDate, price:price},  // Find the document using email and appointment date
-      { $set: { payment: true } }, // Update the payment field to true
-      { new: true } // Return the updated document
+      { $set: { payment: true } }, 
+      { new: true } 
     );
 
     if (updatedBooking) {
-      console.log(updatedBooking);
+      console.log("booking success");
     }
-
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error saving booking." });
+  }
+};
+
+export const GetBookingsToCheckAvailability = async (req, res) => {
+  try {
+    const today = new Date(); // Get the current date
+    today.setHours(0, 0, 0, 0); // Set time to 00:00:00 for today's date
+    
+ 
+    const bookings = await BookingModel.find()
+      .populate('doctor')
+      .populate('service')
+      .populate('appointmentDate');
+    
+    // Filter bookings to only include those with appointmentDate today or in the future, and payment is true
+    const futureBookings = bookings.filter(booking => {
+      const appointmentDate = new Date(booking.appointmentDate.date); // Assuming 'date' field in Availabledate schema
+      return appointmentDate >= today && booking.payment === true;
+    });
+
+    if (futureBookings.length > 0) {
+      console.log(futureBookings);
+      res.json(futureBookings);
+    } else {
+      res.status(404).json({ message: 'No available bookings for today or future dates.' });
+    }
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Error fetching bookings.' });
   }
 };

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-
 const availabledateSchema = new mongoose.Schema({
+
   doctor_id: {
     type: String,
     required: true,
@@ -10,9 +10,8 @@ const availabledateSchema = new mongoose.Schema({
     type:Date,
     required: true,
   }
-
+  
 });
-
 
 const Availabledate = mongoose.model('Availabledate', availabledateSchema);
 

@@ -16,18 +16,21 @@ const bookingSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    doctor :{
-        type : String,
-        required : true,
-    },
-    service :{
-        type : String,
-        required : true,
-    },
-    appointmentDate :{
-        type : String,
-        required : true,
-    },
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to Doctor model
+        ref: 'Doctor',
+        required: true,
+      },
+      service: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to Service model
+        ref: 'services',
+        required: true,
+      },
+      appointmentDate: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to Availabledate model
+        ref: 'Availabledate',
+        required: true,
+      },
     price :{
         type : String,
         required : true,

@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import { configDotenv } from 'dotenv';
 import basicRoutes from "./routes/basicRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import { WebSocketServer } from 'ws';
 
 configDotenv();
 const app = express();
@@ -35,7 +36,20 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-// Start the server
+
+
+const wss = new WebSocketServer({ port: 8080 }); 
+
+wss.on('connection', (ws) => {
+  console.log("A client connected to the WebSocket server.");
+  ws.on('message', (message) => {
+    console.log("Received message:", message);
+  });
+
+  ws.send("Hello from WebSocket server!");
+});
+
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

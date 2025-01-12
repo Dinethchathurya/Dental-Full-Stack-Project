@@ -9,6 +9,7 @@ import DashboardPriceListTableRow from "../components/admin/adminComponents/dash
 
 const Booking = () => {
   const [services, setServices] = useState([]);
+  const [bookings, setBookings] = useState([]);
 
   async function GetServices() {
     try {
@@ -21,14 +22,24 @@ const Booking = () => {
     } catch (error) {
       console.log(error);
     }
+  };  
+  async function GetBookingAvailable() {
+    try {
+      const response = await axios.get(
+        "http://localhost:9000/getBookingAvailable"
+      );
+      if (response.data) {
+        setBookings(response.data);
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-
 
   useEffect(()=>{
     GetServices();
-    //getDoctors();
-
+    GetBookingAvailable();
   },[]);
 
   return (
@@ -39,7 +50,6 @@ const Booking = () => {
       </Helmet>
       
       <NavbarComponent />
-
 
       <section id="services" className="shadow-box bg-custom-blue">
       <div className="mt-4">
@@ -95,13 +105,11 @@ const Booking = () => {
       </div>
       </section>
 
-
       <div className="container my-5">
         <BookAnAppointment />
         <OpenTimes />
       </div>
 
-      
       <Footer />
     </>
   );

@@ -21,6 +21,7 @@ services:
       dockerfile: dockerfile   
     ports:
       - "9000:9000" 
+      - "8080:8080"
     command: npm start
     volumes:
       - ./backend:/app       
@@ -58,3 +59,4 @@ volumes:
 
 networks:
   mynetwork:
+    driver: bridge
