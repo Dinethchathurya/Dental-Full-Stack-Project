@@ -52,8 +52,8 @@ jobs:
       - name: Check if the application is running (optional)
         run: |
           cd app
-          docker-compose exec -T frontend curl -f http://localhost:5173  # Ensure frontend is up
-          docker-compose exec -T backend curl -f http://localhost:9000  # Ensure backend is up
+          docker-compose exec -T frontend curl -f http://frontend:5173  # Ensure frontend is up
+          docker-compose exec -T backend curl -f http://backend:9000 
 
       - name: Shut down Docker Compose services
         run: |
