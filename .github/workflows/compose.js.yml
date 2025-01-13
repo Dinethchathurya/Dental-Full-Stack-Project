@@ -49,11 +49,15 @@ jobs:
     #       cd app/frontend
     #       docker-compose exec -T backend npm test  # Run tests inside the backend container
 
-      - name: Check if the application is running (optional)
+      - name: Wait for backend to be ready
+        run: |
+          ./wait-for-it.sh backend:9000 --timeout=60 --strict -- echo "Backend is ready"
+      - name: Check if the application is running
         run: |
           cd app
-          docker-compose exec -T frontend curl -f http://frontend:5173  # Ensure frontend is up
-          docker-compose exec -T backend curl -f http://backend:9000 
+          docker-compose exec -T frontend curl -f http://frontend:5173
+          docker-compose exec -T backend curl -f http://backend:9000
+ 
 
       - name: Shut down Docker Compose services
         run: |
