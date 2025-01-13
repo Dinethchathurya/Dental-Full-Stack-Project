@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main  
+      - backend
   pull_request:
     branches:
-      - main  
+      - main 
+      - backend 
 jobs:
   frontend:
     runs-on: ubuntu-latest
