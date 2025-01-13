@@ -49,9 +49,23 @@ jobs:
     #       cd app/frontend
     #       docker-compose exec -T backend npm test  # Run tests inside the backend container
 
+
       - name: Wait for backend to be ready
         run: |
-          ./wait-for-it.sh backend:9000 --timeout=60 --strict -- echo "Backend is ready"
+          MAX_WAIT_TIME=60
+          WAIT_TIME=0
+          until curl -s http://backend:9000; do
+            if [ $WAIT_TIME -ge $MAX_WAIT_TIME ]; then
+              echo "Backend not ready after $MAX_WAIT_TIME seconds"
+              exit 1
+            fi
+            echo "Waiting for backend to be ready..."
+            sleep 5
+            WAIT_TIME=$((WAIT_TIME + 5))
+          done
+          echo "Backend is ready"
+
+
       - name: Check if the application is running
         run: |
           cd app
