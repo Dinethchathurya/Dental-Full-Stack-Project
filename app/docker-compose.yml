@@ -8,10 +8,12 @@ services:
     depends_on:
       - backend  
     environment:
-      - REACT_APP_API_URL=http://localhost:5173
+      - REACT_APP_API_URL=http://backend:9000
     command: npm run dev -- --host  
     volumes:
       - ./frontend/src:/app/src 
+    networks:
+      - mynetwork
 
   backend:
     build:
@@ -19,7 +21,42 @@ services:
       dockerfile: dockerfile   
     ports:
       - "9000:9000" 
+      - "8080:8080"
     command: npm start
     volumes:
-      - ./backend:/app
+      - ./backend:/app       
+      - /app/node_modules 
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/dental
+    networks:
+      - mynetwork
 
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+  
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mynetwork
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    depends_on: 
+      - mongo
+    networks:
+      - mynetwork
+
+volumes:
+  mongo_data:
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,32 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import DashboardAppoimantsDoctorOption from "./adminComponents/dashboardAppoimentsDoctorOption";
 
 const Appointments = () => {
-  const [doctor, setDoctor] = useState("");
+
+  const [bookings, setBookings] = useState([]);
+
+
+    async function GetBookingAvailable() {
+      try {
+        const response = await axios.get(
+          "http://localhost:9000/getBookings"
+        );
+        if (response.data) {
+          setBookings(response.data);
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+
+  useEffect(() => {
+
+    GetBookingAvailable();
+
+  }, []);
 
   return (
     <section id="Appointments" className="shadow-box bg-custom-blue">
       <div className="mt-4">
-        <h3 className="text-center">Appointments by Doctor</h3>
-        <select className="form-select mb-3" onChange={(e) => setDoctor(e.target.value)} value={doctor}>
-          <option selected>Select Doctor</option>
-          <option value="1">Dr Lahiru Rajakaruna</option>
-          <option value="2">Dr Deepali Nanayakkara</option>
-          <option value="3">Dr Malinda Senadhirathna</option>
-          <option value="4">Dr Dinali Gayasha</option>
-        </select>
+        <h3 className="text-center">Appointments</h3>
         <table className="table table-striped">
           <thead>
-            <tr className="text-center">
-              <th scope="col">ID</th>
-              <th scope="col">Patient Name</th>
+            <tr >
+              <th scope="col">Patient tName</th>
               <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Service</th>
+              <th scope="col">Price</th>
             </tr>
           </thead>
           <tbody id="appointmentList">
-            {/* Appointments should be dynamically rendered here */}
-          </tbody>
+  {bookings.map((booking) => (
+    <tr key={booking._id}>
+      <td>{booking.patientName}</td>
+      <td>{new Date(booking.appointmentDate?.date).toLocaleDateString()}</td>
+      <td>{booking.doctor?.name}</td>
+      <td>{booking.service.name}</td>
+      <td>{booking.service.price}</td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
     </section>

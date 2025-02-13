@@ -1,22 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import DashboardDoctorTableRow from "./adminComponents/dashboardDoctorTableRow";
 
 const AddDoctorModal = () => {
+  const token = sessionStorage.getItem('token');
+
+  // Config for Authorization header
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`, // Bearer token
+    },
+  };
+
+
+  const [doctors , setDoctors] = useState([]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
+    
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // You can handle the form submission logic here
+  const onSubmit = async (data) => {
+    
+    try {
+      const response = await axios.post("http://localhost:9000/api/admin/addDoctor", data, config);
+      if (response.data) {
+        alert(response.data);
+        reset();
+        getDoctors();
+      }
+      
+    } catch (error) {
+      console.log(error);
+      alert("something wrong");
+    }
   };
+
+  async function getDoctors() {
+    try {
+      const response = await axios.get("http://localhost:9000/api/admin/getdoctors", config);
+      if (response.data) {
+        setDoctors(response.data);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    } 
+    
+  }
+
+  useEffect(() => {
+    getDoctors();
+
+  }, []);
+
 
   return (
     <>
       <section id="Team" className="shadow-box bg-custom-blue">
       <div className="mt-4">
-        <h3 className="text-center">Doctors List</h3>
+        <h3 className="text-center">Doctors</h3>
         <button
           className="btn btn-primary mb-3"
           data-bs-toggle="modal"
@@ -30,10 +77,20 @@ const AddDoctorModal = () => {
               <th>Doctor Name</th>
               <th>Specialty</th>
               <th>Registration Number</th>
-              <th>Action</th>
             </tr>
           </thead>
-          <tbody>{/* <!-- Doctors--> */}</tbody>
+          <tbody>
+              {doctors.map((doctor) => {
+                return(
+                  <DashboardDoctorTableRow 
+                  key={doctor._id}
+                  name={doctor.name}
+                  registrationNumber={doctor.registrationNumber}
+                  specialty={doctor.specialty}
+                />
+                );
+              })}
+          </tbody>
         </table>
       </div>
       <div
