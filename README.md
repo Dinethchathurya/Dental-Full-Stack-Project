@@ -34,8 +34,8 @@ This is a full-stack dental booking system that allows users to book appointment
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/username/dental-booking-system.git
-   cd dental-booking-system
+   git clone https://github.com/Dinethchathurya/Dental-Full-Stack-Project.git
+   cd Dental-Full-Stack-Project/app
 2. **Build and run the application with Docker Compose:**
   Make sure Docker and Docker Compose are installed on your machine. If not, follow the installation guides on Docker's official website.To build and start all services defined in docker-compose.yml, run the following command:
 ```bash
