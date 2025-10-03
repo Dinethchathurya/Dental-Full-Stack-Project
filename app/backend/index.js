@@ -10,7 +10,7 @@ import { connectWebSocket } from './controllers/useController.js';
 
 configDotenv();
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 9000;
 
 // Connect to MongoDB
 connectDB();
